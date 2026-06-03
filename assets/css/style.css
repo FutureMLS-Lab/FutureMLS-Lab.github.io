@@ -646,6 +646,22 @@ a { color: inherit; text-decoration: none; }
   flex-wrap: wrap;
   margin-top: 4px;
 }
+.prose .contact__actions a.btn {
+  border-bottom: 0;
+}
+.contact__actions .btn--primary {
+  background: linear-gradient(135deg, #2f7df6 0%, #185ed8 100%);
+  color: #fff;
+  border-color: #185ed8;
+  box-shadow: 0 10px 24px rgba(24, 94, 216, .24);
+}
+.contact__actions .btn--primary:hover {
+  background: linear-gradient(135deg, #4790ff 0%, #236fe8 100%);
+  color: #fff;
+  border-color: #236fe8;
+  box-shadow: 0 14px 30px rgba(24, 94, 216, .32);
+  transform: translateY(-1px);
+}
 
 /* ===================== Footer ===================== */
 .footer {
