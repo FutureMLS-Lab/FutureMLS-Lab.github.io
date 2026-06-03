@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RUD — FutureMLS Lab</title>
+  <meta name="description" content="RUD (Repeat Until Done): an open-source run–evaluate–refine loop for robust, iterative ML workflows — a FutureMLS Lab project." />
+  <link rel="icon" type="image/png" href="../assets/img/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <!-- ===== Navigation ===== -->
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <a class="nav__brand" href="../index.html" aria-label="FutureMLS Lab home">
+        <img src="../assets/img/logo.png" alt="" class="nav__logo" />
+        <span class="nav__brand-text">FutureMLS&nbsp;Lab</span>
+      </a>
+      <nav class="nav__links" id="navLinks" aria-label="Primary">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#research">Research</a>
+        <a href="../index.html#team">Team</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="https://github.com/FutureMLS-Lab" class="nav__ext" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="proj container">
+    <a class="proj__back" href="../index.html#projects">← All projects</a>
+
+    <span class="eyebrow">Efficient ML System · Open-source</span>
+    <h1 class="proj__title">RUD: Repeat Until Done</h1>
+    <div class="proj__meta">
+      <span class="proj__badge">Open-source tool</span>
+      <span>An automatic run–evaluate–refine loop for ML workflows</span>
+    </div>
+
+    <figure class="proj__figure">
+      <img src="../assets/img/projects/rud.svg" alt="RUD repeat-until-done loop diagram" />
+    </figure>
+
+    <span class="eyebrow">Overview</span>
+    <p class="proj__lead">
+      RUD (<strong>Repeat Until Done</strong>) is a lightweight framework that wraps any ML job in
+      an automatic <strong>run → evaluate → refine</strong> loop: it runs a task, evaluates the
+      result against a success criterion, and then refines and re-runs until the criterion is met
+      or a budget is exhausted. It makes flaky pipelines, agentic/LLM workflows, and large
+      experiment sweeps robust and reproducible — turning "try again until it works" into a
+      principled, configurable loop.
+    </p>
+
+    <span class="eyebrow">Highlights</span>
+    <ul class="proj__list">
+      <li>Pluggable <strong>evaluators</strong> and stopping criteria — score, verify, or test against any metric.</li>
+      <li>Automatic <strong>retry &amp; refine</strong> with configurable budgets, backoff, and checkpointing.</li>
+      <li>Works with arbitrary commands and Python callables; logs every attempt for reproducibility.</li>
+    </ul>
+
+    <span class="eyebrow">Maintainers</span>
+    <p class="proj__authors">
+      Maintained by the <strong>FutureMLS Lab</strong> — <strong>Zhongzhu Zhou</strong> and contributors.
+    </p>
+
+    <span class="eyebrow">Links</span>
+    <div class="proj__links">
+      <a class="btn btn--primary" href="https://github.com/FutureMLS-Lab/RUD" target="_blank" rel="noopener">Code ↗</a>
+      <a class="btn btn--ghost" href="#" target="_blank" rel="noopener">Documentation</a>
+    </div>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img src="../assets/img/logo.png" alt="" class="footer__logo" />
+        <div>
+          <strong>FutureMLS Lab</strong>
+          <p>Future Machine Learning &amp; Systems Lab</p>
+        </div>
+      </div>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#research">Research</a>
+        <a href="../index.html#team">Team</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="https://github.com/FutureMLS-Lab" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <p class="footer__copy">© <span id="year">2026</span> Future Machine Learning &amp; Systems Lab. Founded by Zhongzhu Zhou.</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

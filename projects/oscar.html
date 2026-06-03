@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OSCAR — FutureMLS Lab</title>
+  <meta name="description" content="OSCAR: Offline Spectral Covariance-Aware Rotation for 2-bit KV Cache Quantization — a FutureMLS Lab project." />
+  <link rel="icon" type="image/png" href="../assets/img/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <!-- ===== Navigation ===== -->
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <a class="nav__brand" href="../index.html" aria-label="FutureMLS Lab home">
+        <img src="../assets/img/logo.png" alt="" class="nav__logo" />
+        <span class="nav__brand-text">FutureMLS&nbsp;Lab</span>
+      </a>
+      <nav class="nav__links" id="navLinks" aria-label="Primary">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#research">Research</a>
+        <a href="../index.html#team">Team</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="https://github.com/FutureMLS-Lab" class="nav__ext" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="proj container">
+    <a class="proj__back" href="../index.html#projects">← All projects</a>
+
+    <span class="eyebrow">Quantization · 2026</span>
+    <h1 class="proj__title">OSCAR: Offline Spectral Covariance-Aware Rotation for 2-bit KV Cache Quantization</h1>
+    <div class="proj__meta">
+      <span class="proj__badge">Lab-led project</span>
+      <span>INT2 KV-cache serving · SGLang + Triton</span>
+    </div>
+
+    <figure class="proj__figure">
+      <img src="../assets/img/projects/oscar.png" alt="OSCAR project preview" />
+    </figure>
+
+    <span class="eyebrow">Abstract</span>
+    <p class="proj__lead">
+      OSCAR applies attention-aware offline rotations and clipping to compress the long-history
+      KV cache to <strong>2.28 bits per element</strong> on Qwen3-4B/8B/32B and GLM-4.7-FP8 —
+      roughly <strong>8× KV-memory reduction</strong> and up to <strong>~7× higher large-batch
+      throughput</strong>, with a mean accuracy gap to BF16 of just 1.42 / -0.02 / +0.27 on the
+      8B / 32B / 358B models. It ships an SGLang INT2-serving path with Triton kernels.
+    </p>
+
+    <span class="eyebrow">Authors</span>
+    <p class="proj__authors">
+      <strong>Zhongzhu Zhou</strong>*, Donglin Zhuang*, Jisen Li, <strong>Ziyan Chen</strong>,
+      <strong>Shuaiwen Leon Song</strong>, Ben Athiwaratkun, <strong>Xiaoxia Wu</strong>
+      <br /><span style="font-size:13.5px;color:var(--faint)">* Equal contribution</span>
+    </p>
+
+    <span class="eyebrow">Links</span>
+    <div class="proj__links">
+      <a class="btn btn--primary" href="#" target="_blank" rel="noopener">Paper</a>
+      <a class="btn btn--ghost" href="https://github.com/FutureMLS-Lab/OSCAR" target="_blank" rel="noopener">Code ↗</a>
+      <a class="btn btn--ghost" href="#" target="_blank" rel="noopener">Project page</a>
+      <a class="btn btn--ghost" href="#" target="_blank" rel="noopener">Hugging Face</a>
+    </div>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img src="../assets/img/logo.png" alt="" class="footer__logo" />
+        <div>
+          <strong>FutureMLS Lab</strong>
+          <p>Future Machine Learning &amp; Systems Lab</p>
+        </div>
+      </div>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#research">Research</a>
+        <a href="../index.html#team">Team</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="https://github.com/FutureMLS-Lab" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <p class="footer__copy">© <span id="year">2026</span> Future Machine Learning &amp; Systems Lab. Founded by Zhongzhu Zhou.</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Future Machine Learning &amp; Systems Lab (FutureMLS)</title>
+  <meta name="description" content="The Future Machine Learning & Systems (FutureMLS) Lab, founded by Zhongzhu Zhou, researches efficient machine learning and systems: LLM inference, quantization, attention, and hardware-aware ML systems." />
+  <meta name="author" content="FutureMLS Lab" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Future Machine Learning &amp; Systems Lab (FutureMLS)" />
+  <meta property="og:description" content="Efficient machine learning and systems: LLM inference, quantization, attention, and hardware-aware ML systems." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/img/logo.png" />
+
+  <link rel="icon" type="image/png" href="assets/img/logo.png" />
+
+  <!-- Fonts: serif display + clean sans body for an academic feel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <!-- ===== Navigation ===== -->
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <a class="nav__brand" href="#home" aria-label="FutureMLS Lab home">
+        <img src="assets/img/logo.png" alt="" class="nav__logo" />
+        <span class="nav__brand-text">FutureMLS&nbsp;Lab</span>
+      </a>
+
+      <nav class="nav__links" id="navLinks" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#founder">Zhongzhu Zhou</a>
+        <a href="#research">Research</a>
+        <a href="#news">News</a>
+        <a href="#team">Team</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <a href="https://github.com/FutureMLS-Lab" class="nav__ext" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== Hero (lab name on top) ===== -->
+  <section class="hero" id="home">
+    <div class="container hero__inner">
+      <p class="hero__eyebrow">Academic Research Lab</p>
+      <div class="hero__heading">
+        <img src="assets/img/logo.png" alt="FutureMLS Lab logo" class="hero__logo" />
+        <h1 class="hero__title">Future Machine Learning<br />&amp; Systems Lab</h1>
+      </div>
+      <p class="hero__lead">
+        We study the algorithms and systems that make large-scale machine learning more
+        efficient — spanning low-bit quantization, KV-cache compression, attention
+        architectures, and hardware-aware ML systems.
+      </p>
+      <div class="hero__actions">
+        <a href="#research" class="btn btn--primary">Research</a>
+        <a href="#team" class="btn btn--ghost">Team</a>
+        <a href="https://github.com/FutureMLS-Lab" class="btn btn--ghost" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+      <ul class="hero__topics" aria-label="Research topics">
+        <li>Efficient ML Algorithm</li>
+        <li>Efficient ML System</li>
+        <li>Quantization</li>
+        <li>Modeling</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== About (Who we are) ===== -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">About</span>
+        <h2 class="section__title">Who we are</h2>
+      </div>
+      <div class="prose">
+        <p class="prose__lead">
+          Welcome to the <strong>Future Machine Learning &amp; Systems (FutureMLS) Lab</strong>.
+          We work at the intersection of machine learning and computer systems. Today's
+          foundation models are remarkably capable but costly to train and serve. Our mission
+          is to close the gap between rapidly growing model capability and the real-world cost
+          of deploying these models.
+        </p>
+        <p>
+          We pursue <em>algorithm–system co-design</em>: quantization and compression methods
+          that preserve accuracy, attention mechanisms that shrink memory footprints, and
+          runtimes that make deployment practical. Our research spans the AI stack — from model
+          compression and KV-cache design to GPU kernels and serving systems — and our work is
+          open-source, reproducible, and built to be used.
+        </p>
+        <p class="prose__meta">
+          <span><strong>Founder &amp; PI:</strong> Zhongzhu Zhou</span>
+          <span><strong>Advisors:</strong> Xiaoxia Wu, Shuaiwen Leon Song</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== About Zhongzhu Zhou (Founder) ===== -->
+  <section class="section section--alt" id="founder">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">Founder</span>
+        <h2 class="section__title">About Zhongzhu Zhou</h2>
+      </div>
+
+      <div class="founder">
+        <aside class="founder__media">
+          <img class="founder__photo" src="assets/img/people/zhongzhu-zhou.png" alt="Zhongzhu Zhou" />
+          <p class="founder__name">Zhongzhu Zhou</p>
+          <p class="founder__alias">Charlie Zhou · /ZHONG-JOO JOH/</p>
+          <p class="founder__role">Founder &amp; Principal Investigator</p>
+          <div class="founder__links">
+            <a href="https://zhongzhuzhou.org/" target="_blank" rel="noopener">Homepage ↗</a>
+            <a href="https://scholar.google.com/" target="_blank" rel="noopener">Google Scholar ↗</a>
+            <a href="https://github.com/FutureMLS-Lab" target="_blank" rel="noopener">GitHub ↗</a>
+            <a href="mailto:zhongzhu.zhou@sydney.edu.au">Email</a>
+          </div>
+        </aside>
+
+        <div class="founder__body prose">
+          <p class="prose__lead">
+            Zhongzhu Zhou (Charlie Zhou) is the founder and principal investigator of the
+            Future Machine Learning &amp; Systems Lab. He is a Senior Research Scientist on the
+            Turbo Team at Together AI, and earned his Ph.D. at the School of Computer Science,
+            University of Sydney, advised by Prof. Shuaiwen Leon Song.
+          </p>
+          <p>
+            His research spans <strong>efficient machine learning and systems</strong> — from
+            pretraining quality to efficient algorithms and algorithm–system co-design that
+            bridges emerging ML/LLM methods and real-world applications, improving both
+            productivity (usable, robust stacks) and performance (throughput, memory, and
+            cost-efficiency). He received his B.Eng. (Hons) from Sun Yat-sen University, and has
+            interned at Dolby, the DeepSpeed team at Microsoft, and Tencent.
+          </p>
+          <p>
+            He leads projects across the lab's four themes, including
+            <a href="projects/oscar.html">OSCAR</a> (2-bit KV-cache quantization),
+            <a href="projects/care.html">CARE</a> (covariance-aware Multi-Head Latent Attention),
+            and <a href="projects/rud.html">RUD</a> (an automatic run–evaluate–refine loop).
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Research ===== -->
+  <section class="section" id="research">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">Research</span>
+        <h2 class="section__title">What we work on</h2>
+        <p class="section__sub">Four directions, one goal: efficient and capable AI at scale.</p>
+      </div>
+      <div class="topics">
+        <article class="topic reveal">
+          <span class="topic__no">01</span>
+          <h3 class="topic__title">Efficient ML Algorithm</h3>
+          <p>Algorithmic methods that cut compute and memory while preserving accuracy — sparsity, low-rank structure, and efficient training &amp; inference for large models.</p>
+        </article>
+        <article class="topic reveal">
+          <span class="topic__no">02</span>
+          <h3 class="topic__title">Efficient ML System</h3>
+          <p>Systems that make efficient algorithms practical end-to-end — GPU kernels, distributed runtimes, KV-cache design, and high-throughput serving.</p>
+        </article>
+        <article class="topic reveal">
+          <span class="topic__no">03</span>
+          <h3 class="topic__title">Quantization</h3>
+          <p>Low-bit weight, activation, and KV-cache quantization — spectral and covariance-aware methods that keep accuracy down to 2-bit.</p>
+        </article>
+        <article class="topic reveal">
+          <span class="topic__no">04</span>
+          <h3 class="topic__title">Modeling</h3>
+          <p>Model and architecture design — attention mechanisms, latent representations, and architectures that trade memory for capability gracefully.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== News ===== -->
+  <section class="section section--alt" id="news">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">News</span>
+        <h2 class="section__title">Recent updates</h2>
+      </div>
+      <ul class="news">
+        <li class="news__item reveal">
+          <span class="news__date">May 26, 2026</span>
+          <p class="news__text"><strong><a href="projects/oscar.html">OSCAR</a></strong> crosses 300&nbsp;★ on GitHub in its first week — thanks to the open-source community.</p>
+        </li>
+        <li class="news__item reveal">
+          <span class="news__date">May 19, 2026</span>
+          <p class="news__text"><strong><a href="projects/oscar.html">OSCAR</a></strong> released — 2-bit KV-cache serving at 2.28 effective bits/element with near-BF16 accuracy on Qwen3 and GLM-4.7.</p>
+        </li>
+        <li class="news__item reveal">
+          <span class="news__date">May 2026</span>
+          <p class="news__text"><strong><a href="projects/rud.html">RUD</a></strong> (Repeat Until Done) is open-sourced — an automatic run–evaluate–refine loop for robust, reproducible ML workflows.</p>
+        </li>
+        <li class="news__item reveal">
+          <span class="news__date">Apr 2026</span>
+          <p class="news__text"><strong><a href="projects/care.html">CARE</a></strong> presented at <strong>ICLR 2026</strong>: covariance-aware, rank-enhanced decomposition for Multi-Head Latent Attention.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== Team ===== -->
+  <section class="section" id="team">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">Team</span>
+        <h2 class="section__title">People</h2>
+        <p class="section__sub">A small group of researchers and advisors building in the open.</p>
+      </div>
+
+      <h3 class="team__group">Advisors</h3>
+      <div class="people people--advisors">
+        <article class="person reveal">
+          <img class="person__photo" src="assets/img/people/xiaoxia-wu.jpg" alt="Xiaoxia Wu" />
+          <div class="person__info">
+            <h4 class="person__name">Xiaoxia Wu</h4>
+            <p class="person__role">Advisor</p>
+            <p class="person__bio">Principal Research scientist in efficient ML and low-bit quantization, with extensive work across the DeepSpeed and Together AI.</p>
+            <ul class="person__tags">
+              <li>Efficient ML Algorithm</li>
+              <li>Efficient ML System</li>
+              <li>Quantization</li>
+            </ul>
+            <div class="person__links">
+              <a href="https://scholar.google.com/citations?user=Ry0Bdt8AAAAJ" target="_blank" rel="noopener">Scholar</a>
+              <a href="https://xwushirley.github.io/" target="_blank" rel="noopener">Homepage</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="person reveal">
+          <img class="person__photo" src="assets/img/people/shuaiwen-song.png" alt="Shuaiwen Leon Song" />
+          <div class="person__info">
+            <h4 class="person__name">Shuaiwen Leon Song</h4>
+            <p class="person__role">Advisor</p>
+            <p class="person__bio">Professor at the University of Sydney; high-performance computing and ML systems.</p>
+            <ul class="person__tags">
+              <li>Efficient ML System</li>
+            </ul>
+            <div class="person__links">
+              <a href="https://scholar.google.com/citations?user=vt_QcOMAAAAJ" target="_blank" rel="noopener">Scholar</a>
+              <a href="https://shuaiwen-leon-song.github.io/" target="_blank" rel="noopener">Homepage</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <h3 class="team__group">Members</h3>
+      <div class="people">
+        <article class="person reveal">
+          <img class="person__photo" src="assets/img/people/fengxiang-bie.png" alt="Fengxiang “Bobbie” Bie" />
+          <div class="person__info">
+            <h4 class="person__name">Fengxiang “Bobbie” Bie</h4>
+            <p class="person__role">Student Researcher</p>
+            <p class="person__bio">Efficient ML algorithms and speculative decoding; contributor to CARE.</p>
+            <ul class="person__tags">
+              <li>Efficient ML Algorithm</li>
+              <li>Speculator</li>
+            </ul>
+            <div class="person__links">
+              <a href="https://github.com/FutureMLS-Lab" target="_blank" rel="noopener">GitHub</a>
+              <a href="#" target="_blank" rel="noopener">Scholar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="person reveal">
+          <img class="person__photo" src="assets/img/people/ziyan-chen.png" alt="Ziyan Chen" />
+          <div class="person__info">
+            <h4 class="person__name">Ziyan Chen</h4>
+            <p class="person__role">Student Researcher</p>
+            <p class="person__bio">Efficient ML algorithms and KV-cache compression; contributor to OSCAR and CARE.</p>
+            <ul class="person__tags">
+              <li>Efficient ML Algorithm</li>
+            </ul>
+            <div class="person__links">
+              <a href="https://github.com/FutureMLS-Lab" target="_blank" rel="noopener">GitHub</a>
+              <a href="#" target="_blank" rel="noopener">Scholar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="person reveal">
+          <div class="person__avatar" data-mono="RW" aria-hidden="true"></div>
+          <div class="person__info">
+            <h4 class="person__name">Ryan Wang</h4>
+            <p class="person__role">Student Researcher</p>
+            <p class="person__bio">Efficient ML algorithms and speculative decoding for large-scale machine learning.</p>
+            <ul class="person__tags">
+              <li>Efficient ML Algorithm</li>
+              <li>Speculator</li>
+            </ul>
+            <div class="person__links">
+              <a href="https://github.com/FutureMLS-Lab" target="_blank" rel="noopener">GitHub</a>
+              <a href="#" target="_blank" rel="noopener">Scholar</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Projects ===== -->
+  <section class="section section--alt" id="projects">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">Projects</span>
+        <h2 class="section__title">Open-source research</h2>
+        <p class="section__sub">Selected projects from the lab — open the preview page for details, papers, and code.</p>
+      </div>
+      <div class="projects">
+        <a class="project reveal" href="projects/oscar.html">
+          <div class="project__preview">
+            <img src="assets/img/projects/oscar.png" alt="OSCAR preview" loading="lazy" />
+          </div>
+          <div class="project__body">
+            <div class="project__head">
+              <h3 class="project__name">OSCAR</h3>
+              <span class="project__tag">Quantization</span>
+            </div>
+            <p class="project__venue">2-bit KV-cache quantization · 2026</p>
+            <p class="project__desc">Attention-aware offline rotations compress the KV cache to 2.28 bits/element — ~8× memory reduction and up to ~7× higher throughput with near-BF16 accuracy.</p>
+            <span class="project__link">View project →</span>
+          </div>
+        </a>
+
+        <a class="project reveal" href="projects/care.html">
+          <div class="project__preview">
+            <img src="assets/img/projects/care.jpg" alt="CARE preview" loading="lazy" />
+          </div>
+          <div class="project__body">
+            <div class="project__head">
+              <h3 class="project__name">CARE</h3>
+              <span class="project__tag">Efficient ML Algorithm</span>
+            </div>
+            <p class="project__venue">Multi-Head Latent Attention · ICLR 2026</p>
+            <p class="project__desc">Covariance-aware low-rank decomposition that converts pretrained GQA/MHA into MLA — up to 215× lower one-shot perplexity at matched KV budgets.</p>
+            <span class="project__link">View project →</span>
+          </div>
+        </a>
+
+        <a class="project reveal" href="projects/rud.html">
+          <div class="project__preview">
+            <img src="assets/img/projects/rud.svg" alt="RUD preview" loading="lazy" />
+          </div>
+          <div class="project__body">
+            <div class="project__head">
+              <h3 class="project__name">RUD</h3>
+              <span class="project__tag">Efficient ML System</span>
+            </div>
+            <p class="project__venue">Repeat Until Done · Open-source</p>
+            <p class="project__desc">A lightweight run–evaluate–refine loop that wraps any ML job and automatically retries until a success criterion is met — for robust, reproducible workflows.</p>
+            <span class="project__link">View project →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">Contact</span>
+        <h2 class="section__title">Get in touch</h2>
+      </div>
+      <div class="prose">
+        <p class="prose__lead">
+          We welcome collaborators, prospective students, and contributors who care about
+          efficient, open machine learning and systems.
+        </p>
+        <p class="contact__actions">
+          <a href="mailto:contact@futuremls.org" class="btn btn--primary">Email the lab</a>
+          <a href="https://github.com/FutureMLS-Lab" class="btn btn--ghost" target="_blank" rel="noopener">View our GitHub ↗</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img src="assets/img/logo.png" alt="" class="footer__logo" />
+        <div>
+          <strong>FutureMLS Lab</strong>
+          <p>Future Machine Learning &amp; Systems Lab</p>
+        </div>
+      </div>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="#about">About</a>
+        <a href="#founder">Zhongzhu Zhou</a>
+        <a href="#research">Research</a>
+        <a href="#team">Team</a>
+        <a href="#projects">Projects</a>
+        <a href="https://github.com/FutureMLS-Lab" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <p class="footer__copy">© <span id="year">2026</span> Future Machine Learning &amp; Systems Lab. Founded by Zhongzhu Zhou.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
