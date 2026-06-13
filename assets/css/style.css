@@ -146,6 +146,8 @@ section[id] { scroll-margin-top: 86px; }
   transition: width .22s ease;
 }
 .nav__links a:not(.nav__ext):hover::after { width: 100%; }
+.nav__links a[aria-current="page"] { color: var(--navy); }
+.nav__links a[aria-current="page"]:not(.nav__ext)::after { width: 100%; }
 .nav__ext {
   padding: 7px 15px;
   border: 1px solid var(--line-strong);
