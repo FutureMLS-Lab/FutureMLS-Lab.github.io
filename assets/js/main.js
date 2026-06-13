@@ -36,6 +36,15 @@
     );
   }
 
+  /* ---------- Cap homepage news to the latest 5 ---------- */
+  const homeNews = document.querySelector("#news .news");
+  if (homeNews) {
+    const items = homeNews.querySelectorAll(".news__item");
+    items.forEach((item, i) => {
+      if (i >= 5) item.style.display = "none";
+    });
+  }
+
   /* ---------- Gentle reveal on scroll ---------- */
   const revealEls = document.querySelectorAll(".reveal");
   if (prefersReduced || !("IntersectionObserver" in window)) {

@@ -13,15 +13,14 @@ code/
 ├── README.md
 ├── projects/               # Per-project preview pages
 │   ├── oscar.html
-│   ├── care.html
-│   └── rud.html
+│   └── care.html
 └── assets/
     ├── css/style.css       # Styles (academic: serif display + navy palette)
     ├── js/main.js          # Nav, mobile menu, gentle scroll reveals
     └── img/
         ├── logo.png        # Lab logo (GitHub org avatar)
         ├── people/         # Member photos (e.g. zhongzhu-zhou.jpg)
-        └── projects/       # Project preview images (oscar, care, rud)
+        └── projects/       # Project preview images (oscar, care)
 ```
 
 ## Preview locally
