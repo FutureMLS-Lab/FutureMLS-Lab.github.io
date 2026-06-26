@@ -565,9 +565,10 @@ section[id] { scroll-margin-top: 86px; }
 }
 .people {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px 34px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px 40px;
   margin-bottom: 52px;
+  max-width: 740px;
 }
 .people--advisors { grid-template-columns: repeat(2, 1fr); max-width: 740px; }
 .people:last-child { margin-bottom: 0; }
