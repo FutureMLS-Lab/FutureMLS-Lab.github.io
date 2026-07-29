@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,6 +14,18 @@
   <meta property="og:image" content="assets/img/logo.png" />
 
   <link rel="icon" type="image/png" href="assets/img/logo.png" />
+
+  <!-- Restore the saved language before first paint -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem("lang") === "zh") {
+          document.documentElement.dataset.lang = "zh";
+          document.documentElement.lang = "zh-CN";
+        }
+      } catch (e) {}
+    })();
+  </script>
 
   <!-- Fonts: self-hosted serif display + clean sans body -->
   <link rel="preload" href="assets/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin />
@@ -31,13 +43,13 @@
       </a>
 
       <nav class="nav__links" id="navLinks" aria-label="Primary">
-        <a href="#about">About</a>
+        <a href="#about"><span data-i18n="en">About</span><span data-i18n="zh">关于</span></a>
         <a href="#founder">Zhongzhu Zhou</a>
-        <a href="#research">Research</a>
-        <a href="news.html">News</a>
-        <a href="#team">Team</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+        <a href="#research"><span data-i18n="en">Research</span><span data-i18n="zh">研究</span></a>
+        <a href="news.html"><span data-i18n="en">News</span><span data-i18n="zh">新闻</span></a>
+        <a href="#team"><span data-i18n="en">Team</span><span data-i18n="zh">团队</span></a>
+        <a href="#projects"><span data-i18n="en">Projects</span><span data-i18n="zh">项目</span></a>
+        <a href="#contact"><span data-i18n="en">Contact</span><span data-i18n="zh">联系</span></a>
         <a href="https://github.com/FutureMLS-Lab" class="nav__ext" target="_blank" rel="noopener">GitHub</a>
       </nav>
 
@@ -50,19 +62,21 @@
   <!-- ===== Hero (lab name on top) ===== -->
   <section class="hero" id="home">
     <div class="container hero__inner">
-      <p class="hero__eyebrow">Future Open Source Research</p>
+      <p class="hero__eyebrow" data-i18n="en">Future Open Source Research</p>
+      <p class="hero__eyebrow" data-i18n="zh">面向未来的开源研究</p>
       <div class="hero__heading">
         <img src="assets/img/logo.png" alt="FutureMLS Lab logo" class="hero__logo" />
         <h1 class="hero__title">Future Machine Learning<br />&amp; Systems Lab</h1>
       </div>
-      <p class="hero__lead">
+      <p class="hero__lead" data-i18n="en">
         We study how to make machine learning more capable, efficient, and practical at
         scale through four connected directions: algorithm and architecture innovation,
         systems optimization, quantization, and post-training-driven modeling.
       </p>
+      <p class="hero__lead" data-i18n="zh">我们研究如何让机器学习在大规模场景下更强大、更高效、更实用,聚焦四个相互关联的方向:算法与架构创新、系统优化、量化,以及后训练驱动的建模。</p>
       <div class="hero__actions">
-        <a href="#research" class="btn btn--primary">Research</a>
-        <a href="#team" class="btn btn--ghost">Team</a>
+        <a href="#research" class="btn btn--primary"><span data-i18n="en">Research</span><span data-i18n="zh">研究方向</span></a>
+        <a href="#team" class="btn btn--ghost"><span data-i18n="en">Team</span><span data-i18n="zh">团队</span></a>
         <a href="https://github.com/FutureMLS-Lab" class="btn btn--ghost" target="_blank" rel="noopener">GitHub ↗</a>
       </div>
       <ul class="hero__topics" aria-label="Research topics">
@@ -78,18 +92,21 @@
   <section class="section" id="about">
     <div class="container">
       <div class="section__head">
-        <span class="eyebrow">About</span>
-        <h2 class="section__title">Who we are</h2>
+        <span class="eyebrow" data-i18n="en">About</span>
+        <span class="eyebrow" data-i18n="zh">关于</span>
+        <h2 class="section__title" data-i18n="en">Who we are</h2>
+        <h2 class="section__title" data-i18n="zh">我们是谁</h2>
       </div>
       <div class="prose">
-        <p class="prose__lead">
+        <p class="prose__lead" data-i18n="en">
           Welcome to the <strong>Future Machine Learning &amp; Systems (FutureMLS) Lab</strong>.
           We work at the intersection of machine learning and computer systems. Today's
           foundation models are remarkably capable but costly to train and serve. Our mission
           is to close the gap between rapidly growing model capability and the real-world cost
           of deploying these models.
         </p>
-        <p>
+        <p class="prose__lead" data-i18n="zh">欢迎来到 <strong>Future Machine Learning &amp; Systems (FutureMLS) Lab</strong>。我们的研究处在机器学习与计算机系统的交叉地带。今天的基础模型能力惊人,但训练与部署的成本同样高昂。我们的使命,是弥合模型能力的快速增长与真实部署成本之间的鸿沟。</p>
+        <p data-i18n="en">
           We pursue <em>algorithm-system co-design</em> across four connected themes:
           Efficient ML Algorithm for algorithm and architecture innovation, Efficient ML
           System for systems optimization, Quantization as a core research focus, and Modeling
@@ -97,8 +114,10 @@
           model design to kernels, runtimes, and serving systems, and is open-source,
           reproducible, and built to be used.
         </p>
+        <p data-i18n="zh">我们围绕四个相互关联的主题推进<em>算法—系统协同设计</em>:Efficient ML Algorithm 负责算法与架构创新,Efficient ML System 负责系统层面的优化,Quantization 是我们的核心研究方向,Modeling 则通过训练让模型变得更强。我们的工作贯穿整个 AI 技术栈——从方法与模型设计,到算子、运行时与服务系统——并且坚持开源、可复现、可直接使用。</p>
         <p class="prose__meta">
-          <span><strong>Founder &amp; PI:</strong> Zhongzhu Zhou</span>
+          <span data-i18n="en"><strong>Founder &amp; PI:</strong> Zhongzhu Zhou</span>
+          <span data-i18n="zh"><strong>创始人 &amp; 负责人:</strong>Zhongzhu Zhou</span>
         </p>
       </div>
     </div>
@@ -108,8 +127,10 @@
   <section class="section section--alt" id="founder">
     <div class="container">
       <div class="section__head">
-        <span class="eyebrow">Founder</span>
-        <h2 class="section__title">About Zhongzhu Zhou</h2>
+        <span class="eyebrow" data-i18n="en">Founder</span>
+        <span class="eyebrow" data-i18n="zh">创始人</span>
+        <h2 class="section__title" data-i18n="en">About Zhongzhu Zhou</h2>
+        <h2 class="section__title" data-i18n="zh">关于 Zhongzhu Zhou</h2>
       </div>
 
       <div class="founder">
@@ -117,23 +138,25 @@
           <img class="founder__photo" src="assets/img/people/zhongzhu-zhou.png" alt="Zhongzhu Zhou" />
           <p class="founder__name">Zhongzhu Zhou</p>
           <p class="founder__alias">Charlie Zhou · /ZHONG-JOO JOH/</p>
-          <p class="founder__role">Founder &amp; Principal Investigator</p>
+          <p class="founder__role" data-i18n="en">Founder &amp; Principal Investigator</p>
+          <p class="founder__role" data-i18n="zh">创始人 &amp; 首席研究员</p>
           <div class="founder__links">
-            <a href="https://zhongzhuzhou.org/" target="_blank" rel="noopener">Homepage ↗</a>
+            <a href="https://zhongzhuzhou.org/" target="_blank" rel="noopener"><span data-i18n="en">Homepage ↗</span><span data-i18n="zh">个人主页 ↗</span></a>
             <a href="https://scholar.google.com/" target="_blank" rel="noopener">Google Scholar ↗</a>
             <a href="https://github.com/FutureMLS-Lab" target="_blank" rel="noopener">GitHub ↗</a>
-            <a href="mailto:zhongzhu.zhou@sydney.edu.au">Email</a>
+            <a href="mailto:zhongzhu.zhou@sydney.edu.au"><span data-i18n="en">Email</span><span data-i18n="zh">邮箱</span></a>
           </div>
         </aside>
 
         <div class="founder__body prose">
-          <p class="prose__lead">
+          <p class="prose__lead" data-i18n="en">
             Zhongzhu Zhou (Charlie Zhou) is the founder and principal investigator of the
             Future Machine Learning &amp; Systems Lab. He is a Senior Research Scientist on the
             Turbo Team at Together AI, and earned his Ph.D. at the School of Computer Science,
             University of Sydney.
           </p>
-          <p>
+          <p class="prose__lead" data-i18n="zh">Zhongzhu Zhou(Charlie Zhou)是 Future Machine Learning &amp; Systems Lab 的创始人与首席研究员。他现任 Together AI Turbo 团队高级研究科学家,并于悉尼大学计算机科学学院取得博士学位。</p>
+          <p data-i18n="en">
             His research spans <strong>efficient machine learning and systems</strong> — from
             pretraining quality to efficient algorithms and algorithm–system co-design that
             bridges emerging ML/LLM methods and real-world applications, improving both
@@ -141,11 +164,13 @@
             cost-efficiency). He received his B.Eng. (Hons) from Sun Yat-sen University, and has
             interned at Dolby, the DeepSpeed team at Microsoft, and Tencent.
           </p>
-          <p>
+          <p data-i18n="zh">他的研究覆盖<strong>高效机器学习与系统</strong>——从预训练质量,到高效算法,再到连接前沿 ML/LLM 方法与真实应用的算法—系统协同设计,同时提升研发效率(好用且稳健的技术栈)与运行性能(吞吐、显存与成本)。他本科毕业于中山大学并获荣誉学位,曾在 Dolby、微软 DeepSpeed 团队与腾讯实习。</p>
+          <p data-i18n="en">
             He leads projects across the lab's four themes, including
             <a href="projects/oscar.html">OSCAR</a> (2-bit KV-cache quantization)
             and <a href="projects/care.html">CARE</a> (covariance-aware Multi-Head Latent Attention).
           </p>
+          <p data-i18n="zh">他主导实验室四个方向上的多个项目,包括 <a href="projects/oscar.html">OSCAR</a>(2-bit KV-cache 量化)与 <a href="projects/care.html">CARE</a>(协方差感知的 Multi-Head Latent Attention)。</p>
         </div>
       </div>
     </div>
@@ -155,30 +180,37 @@
   <section class="section" id="research">
     <div class="container">
       <div class="section__head">
-        <span class="eyebrow">Research</span>
-        <h2 class="section__title">What we work on</h2>
-        <p class="section__sub">Four directions, one goal: efficient and capable AI at scale.</p>
+        <span class="eyebrow" data-i18n="en">Research</span>
+        <span class="eyebrow" data-i18n="zh">研究</span>
+        <h2 class="section__title" data-i18n="en">What we work on</h2>
+        <h2 class="section__title" data-i18n="zh">我们的研究方向</h2>
+        <p class="section__sub" data-i18n="en">Four directions, one goal: efficient and capable AI at scale.</p>
+        <p class="section__sub" data-i18n="zh">四个方向,一个目标:让大规模 AI 既高效又强大。</p>
       </div>
       <div class="topics">
         <article class="topic reveal">
           <span class="topic__no">01</span>
           <h3 class="topic__title">Efficient ML Algorithm</h3>
-          <p>Algorithm and architecture innovations that improve capability while reducing compute, memory, and deployment cost.</p>
+          <p data-i18n="en">Algorithm and architecture innovations that improve capability while reducing compute, memory, and deployment cost.</p>
+          <p data-i18n="zh">通过算法与架构创新提升模型能力,同时降低计算、显存与部署成本。</p>
         </article>
         <article class="topic reveal">
           <span class="topic__no">02</span>
           <h3 class="topic__title">Efficient ML System</h3>
-          <p>System-level optimizations that make efficient methods practical end-to-end, from kernels and runtimes to high-throughput serving.</p>
+          <p data-i18n="en">System-level optimizations that make efficient methods practical end-to-end, from kernels and runtimes to high-throughput serving.</p>
+          <p data-i18n="zh">从算子、运行时到高吞吐服务,用系统层面的优化让高效方法端到端地落地。</p>
         </article>
         <article class="topic reveal">
           <span class="topic__no">03</span>
           <h3 class="topic__title">Quantization</h3>
-          <p>A core research focus on low-bit weight, activation, and KV-cache quantization that preserves accuracy while cutting memory and compute.</p>
+          <p data-i18n="en">A core research focus on low-bit weight, activation, and KV-cache quantization that preserves accuracy while cutting memory and compute.</p>
+          <p data-i18n="zh">我们的核心方向:低比特的权重、激活与 KV-cache 量化,在压缩显存与计算的同时保持精度。</p>
         </article>
         <article class="topic reveal">
           <span class="topic__no">04</span>
           <h3 class="topic__title">Modeling</h3>
-          <p>Model improvement through training optimization, architecture design, and adaptation methods that make models stronger and easier to use.</p>
+          <p data-i18n="en">Model improvement through training optimization, architecture design, and adaptation methods that make models stronger and easier to use.</p>
+          <p data-i18n="zh">通过训练优化、架构设计与适配方法改进模型,让模型更强、也更易用。</p>
         </article>
       </div>
     </div>
@@ -188,69 +220,87 @@
   <section class="section section--alt" id="news">
     <div class="container">
       <div class="section__head">
-        <span class="eyebrow">News</span>
-        <h2 class="section__title">Recent updates</h2>
+        <span class="eyebrow" data-i18n="en">News</span>
+        <span class="eyebrow" data-i18n="zh">新闻</span>
+        <h2 class="section__title" data-i18n="en">Recent updates</h2>
+        <h2 class="section__title" data-i18n="zh">最新动态</h2>
       </div>
       <ul class="news">
         <li class="news__item reveal">
           <div class="news__meta">
             <span class="news__date">Jun 26, 2026</span>
-            <span class="news__cat">Project</span>
+            <span class="news__cat" data-i18n="en">Project</span>
+            <span class="news__cat" data-i18n="zh">项目</span>
           </div>
-          <p class="news__text">Happy to see community interest in bringing <strong><a href="projects/oscar.html">OSCAR</a></strong> toward vLLM serving workflows. Grateful to the contributors pushing broader support for deployable rotation-based KV-cache quantization in mainstream LLM serving stacks.</p>
+          <p class="news__text" data-i18n="en">Happy to see community interest in bringing <strong><a href="projects/oscar.html">OSCAR</a></strong> toward vLLM serving workflows. Grateful to the contributors pushing broader support for deployable rotation-based KV-cache quantization in mainstream LLM serving stacks.</p>
+          <p class="news__text" data-i18n="zh">很高兴看到社区正在把 <strong><a href="projects/oscar.html">OSCAR</a></strong> 推向 vLLM 的服务链路。感谢各位贡献者,让基于旋转的可部署 KV-cache 量化在主流 LLM 服务栈中获得更广泛的支持。</p>
         </li>
         <li class="news__item reveal">
           <div class="news__meta">
             <span class="news__date">Jun 19, 2026</span>
-            <span class="news__cat">Project</span>
+            <span class="news__cat" data-i18n="en">Project</span>
+            <span class="news__cat" data-i18n="zh">项目</span>
           </div>
-          <p class="news__text"><strong><a href="projects/oscar.html">OSCAR</a></strong> has been covered by multiple tech media outlets, including Towards AI, ModelScope, MarkTechPost, QbitAI (量子位), and Synced (机器之心), reaching 100,000+ reads across platforms. Grateful for the community interest in deployable 2-bit KV-cache quantization.</p>
+          <p class="news__text" data-i18n="en"><strong><a href="projects/oscar.html">OSCAR</a></strong> has been covered by multiple tech media outlets, including Towards AI, ModelScope, MarkTechPost, QbitAI (量子位), and Synced (机器之心), reaching 100,000+ reads across platforms. Grateful for the community interest in deployable 2-bit KV-cache quantization.</p>
+          <p class="news__text" data-i18n="zh"><strong><a href="projects/oscar.html">OSCAR</a></strong> 被多家科技媒体报道,包括 Towards AI、ModelScope、MarkTechPost、量子位与机器之心,全平台阅读量超过 100,000 次。感谢社区对可部署 2-bit KV-cache 量化的关注。</p>
         </li>
         <li class="news__item reveal">
           <div class="news__meta">
             <span class="news__date">Jun 18, 2026</span>
-            <span class="news__cat">Project</span>
+            <span class="news__cat" data-i18n="en">Project</span>
+            <span class="news__cat" data-i18n="zh">项目</span>
           </div>
-          <p class="news__text">Released <strong><a href="projects/taylor-calibrate.html">Taylor-Calibrate</a></strong>: Principled Initialization for Hybrid Linear Attention Distillation. The codebase distills Qwen/Llama softmax-attention Transformers into hybrid linear-attention students built on GatedDeltaNet, using Taylor-series-informed initialization before staged distillation.</p>
+          <p class="news__text" data-i18n="en">Released <strong><a href="projects/taylor-calibrate.html">Taylor-Calibrate</a></strong>: Principled Initialization for Hybrid Linear Attention Distillation. The codebase distills Qwen/Llama softmax-attention Transformers into hybrid linear-attention students built on GatedDeltaNet, using Taylor-series-informed initialization before staged distillation.</p>
+          <p class="news__text" data-i18n="zh">发布 <strong><a href="projects/taylor-calibrate.html">Taylor-Calibrate</a></strong>:面向混合线性注意力蒸馏的原理化初始化方法。该代码库把 Qwen/Llama 的 softmax attention Transformer 蒸馏为基于 GatedDeltaNet 的混合线性注意力学生模型,并在分阶段蒸馏前先完成基于泰勒展开的初始化。</p>
         </li>
         <li class="news__item reveal">
           <div class="news__meta">
             <span class="news__date">Jun 15, 2026</span>
-            <span class="news__cat news__cat--paper">Paper</span>
+            <span class="news__cat news__cat--paper" data-i18n="en">Paper</span>
+            <span class="news__cat news__cat--paper" data-i18n="zh">论文</span>
           </div>
-          <p class="news__text">Our paper <strong><a href="projects/oscar.html">OSCAR</a>: Offline Spectral Covariance-Aware Rotation for 2-bit KV Cache Quantization</strong> has been accepted by <strong>ACL SELVA 2026</strong>!</p>
+          <p class="news__text" data-i18n="en">Our paper <strong><a href="projects/oscar.html">OSCAR</a>: Offline Spectral Covariance-Aware Rotation for 2-bit KV Cache Quantization</strong> has been accepted by <strong>ACL SELVA 2026</strong>!</p>
+          <p class="news__text" data-i18n="zh">我们的论文 <strong><a href="projects/oscar.html">OSCAR</a>: Offline Spectral Covariance-Aware Rotation for 2-bit KV Cache Quantization</strong> 已被 <strong>ACL SELVA 2026</strong> 接收!</p>
         </li>
         <li class="news__item reveal">
           <div class="news__meta">
             <span class="news__date">Jun 10, 2026</span>
-            <span class="news__cat">Project</span>
+            <span class="news__cat" data-i18n="en">Project</span>
+            <span class="news__cat" data-i18n="zh">项目</span>
           </div>
-          <p class="news__text">Huge thanks to the open-source community — <strong><a href="projects/oscar.html">OSCAR</a></strong> has reached 500 stars on GitHub and now supports local llama.cpp usage, making 2-bit KV-cache quantization easier to try on local LLM deployments.</p>
+          <p class="news__text" data-i18n="en">Huge thanks to the open-source community — <strong><a href="projects/oscar.html">OSCAR</a></strong> has reached 500 stars on GitHub and now supports local llama.cpp usage, making 2-bit KV-cache quantization easier to try on local LLM deployments.</p>
+          <p class="news__text" data-i18n="zh">衷心感谢开源社区——<strong><a href="projects/oscar.html">OSCAR</a></strong> 的 GitHub star 数已达 500,并且现已支持在本地 llama.cpp 中使用,让 2-bit KV-cache 量化更容易在本地 LLM 部署上试用。</p>
         </li>
         <li class="news__item reveal">
           <div class="news__meta">
             <span class="news__date">May 26, 2026</span>
-            <span class="news__cat">Project</span>
+            <span class="news__cat" data-i18n="en">Project</span>
+            <span class="news__cat" data-i18n="zh">项目</span>
           </div>
-          <p class="news__text"><strong><a href="projects/oscar.html">OSCAR</a></strong> crosses 300&nbsp;★ on GitHub in its first week — thanks to the open-source community.</p>
+          <p class="news__text" data-i18n="en"><strong><a href="projects/oscar.html">OSCAR</a></strong> crosses 300&nbsp;★ on GitHub in its first week — thanks to the open-source community.</p>
+          <p class="news__text" data-i18n="zh"><strong><a href="projects/oscar.html">OSCAR</a></strong> 上线首周 GitHub star 数突破 300&nbsp;★——感谢开源社区。</p>
         </li>
         <li class="news__item reveal">
           <div class="news__meta">
             <span class="news__date">May 19, 2026</span>
-            <span class="news__cat">Project</span>
+            <span class="news__cat" data-i18n="en">Project</span>
+            <span class="news__cat" data-i18n="zh">项目</span>
           </div>
-          <p class="news__text"><strong><a href="projects/oscar.html">OSCAR</a></strong> released — 2-bit KV-cache serving at 2.28 effective bits/element with near-BF16 accuracy on Qwen3 and GLM-4.7.</p>
+          <p class="news__text" data-i18n="en"><strong><a href="projects/oscar.html">OSCAR</a></strong> released — 2-bit KV-cache serving at 2.28 effective bits/element with near-BF16 accuracy on Qwen3 and GLM-4.7.</p>
+          <p class="news__text" data-i18n="zh"><strong><a href="projects/oscar.html">OSCAR</a></strong> 正式发布——在 Qwen3 与 GLM-4.7 上以 2.28 等效 bit/元素实现 2-bit KV-cache 服务,精度接近 BF16。</p>
         </li>
         <li class="news__item reveal">
           <div class="news__meta">
             <span class="news__date">Apr 2026</span>
-            <span class="news__cat news__cat--paper">Paper</span>
+            <span class="news__cat news__cat--paper" data-i18n="en">Paper</span>
+            <span class="news__cat news__cat--paper" data-i18n="zh">论文</span>
           </div>
-          <p class="news__text"><strong><a href="projects/care.html">CARE</a></strong> presented at <strong>ICLR 2026</strong>: covariance-aware, rank-enhanced decomposition for Multi-Head Latent Attention.</p>
+          <p class="news__text" data-i18n="en"><strong><a href="projects/care.html">CARE</a></strong> presented at <strong>ICLR 2026</strong>: covariance-aware, rank-enhanced decomposition for Multi-Head Latent Attention.</p>
+          <p class="news__text" data-i18n="zh"><strong><a href="projects/care.html">CARE</a></strong> 在 <strong>ICLR 2026</strong> 发表:面向 Multi-Head Latent Attention 的协方差感知、秩增强分解方法。</p>
         </li>
       </ul>
       <div class="news__more">
-        <a class="btn btn--ghost" href="news.html">View all news →</a>
+        <a class="btn btn--ghost" href="news.html"><span data-i18n="en">View all news →</span><span data-i18n="zh">查看全部动态 →</span></a>
       </div>
     </div>
   </section>
@@ -259,19 +309,25 @@
   <section class="section" id="team">
     <div class="container">
       <div class="section__head">
-        <span class="eyebrow">Team</span>
-        <h2 class="section__title">People</h2>
-        <p class="section__sub">A small group of researchers and advisors building in the open.</p>
+        <span class="eyebrow" data-i18n="en">Team</span>
+        <span class="eyebrow" data-i18n="zh">团队</span>
+        <h2 class="section__title" data-i18n="en">People</h2>
+        <h2 class="section__title" data-i18n="zh">团队成员</h2>
+        <p class="section__sub" data-i18n="en">A small group of researchers and advisors building in the open.</p>
+        <p class="section__sub" data-i18n="zh">一支小而专注的研究者与顾问团队,坚持开放地做研究。</p>
       </div>
 
-      <h3 class="team__group">Advisors</h3>
+      <h3 class="team__group" data-i18n="en">Advisors</h3>
+      <h3 class="team__group" data-i18n="zh">顾问</h3>
       <div class="people people--advisors">
         <article class="person reveal">
           <img class="person__photo" src="assets/img/people/xiaoxia-wu.jpg" alt="Xiaoxia Wu" />
           <div class="person__info">
             <h4 class="person__name">Xiaoxia Wu</h4>
-            <p class="person__role">Advisor</p>
-            <p class="person__bio">Principal Research scientist in efficient ML and low-bit quantization, with extensive work across the DeepSpeed and Together AI.</p>
+            <p class="person__role" data-i18n="en">Advisor</p>
+            <p class="person__role" data-i18n="zh">顾问</p>
+            <p class="person__bio" data-i18n="en">Principal Research scientist in efficient ML and low-bit quantization, with extensive work across the DeepSpeed and Together AI.</p>
+            <p class="person__bio" data-i18n="zh">高效机器学习与低比特量化方向的首席研究科学家,在 DeepSpeed 与 Together AI 有大量相关工作。</p>
             <ul class="person__tags">
               <li>Efficient ML Algorithm</li>
               <li>Efficient ML System</li>
@@ -279,7 +335,7 @@
             </ul>
             <div class="person__links">
               <a href="https://scholar.google.com/citations?user=Ry0Bdt8AAAAJ" target="_blank" rel="noopener">Scholar</a>
-              <a href="https://xwushirley.github.io/" target="_blank" rel="noopener">Homepage</a>
+              <a href="https://xwushirley.github.io/" target="_blank" rel="noopener"><span data-i18n="en">Homepage</span><span data-i18n="zh">主页</span></a>
             </div>
           </div>
         </article>
@@ -288,27 +344,32 @@
           <img class="person__photo" src="assets/img/people/shuaiwen-song.png" alt="Shuaiwen Leon Song" />
           <div class="person__info">
             <h4 class="person__name">Shuaiwen Leon Song</h4>
-            <p class="person__role">Advisor</p>
-            <p class="person__bio">Professor at the University of Sydney; high-performance computing and ML systems.</p>
+            <p class="person__role" data-i18n="en">Advisor</p>
+            <p class="person__role" data-i18n="zh">顾问</p>
+            <p class="person__bio" data-i18n="en">Professor at the University of Sydney; high-performance computing and ML systems.</p>
+            <p class="person__bio" data-i18n="zh">悉尼大学教授,研究方向为高性能计算与机器学习系统。</p>
             <ul class="person__tags">
               <li>Efficient ML System</li>
             </ul>
             <div class="person__links">
               <a href="https://scholar.google.com/citations?user=vt_QcOMAAAAJ" target="_blank" rel="noopener">Scholar</a>
-              <a href="https://shuaiwen-leon-song.github.io/" target="_blank" rel="noopener">Homepage</a>
+              <a href="https://shuaiwen-leon-song.github.io/" target="_blank" rel="noopener"><span data-i18n="en">Homepage</span><span data-i18n="zh">主页</span></a>
             </div>
           </div>
         </article>
       </div>
 
-      <h3 class="team__group">Members</h3>
+      <h3 class="team__group" data-i18n="en">Members</h3>
+      <h3 class="team__group" data-i18n="zh">成员</h3>
       <div class="people">
         <article class="person reveal">
           <img class="person__photo" src="assets/img/people/fengxiang-bie.png" alt="Fengxiang “Bobbie” Bie" />
           <div class="person__info">
             <h4 class="person__name">Fengxiang “Bobbie” Bie</h4>
-            <p class="person__role">Student Researcher</p>
-            <p class="person__bio">Efficient ML algorithms and speculative decoding; contributor to CARE.</p>
+            <p class="person__role" data-i18n="en">Student Researcher</p>
+            <p class="person__role" data-i18n="zh">学生研究员</p>
+            <p class="person__bio" data-i18n="en">Efficient ML algorithms and speculative decoding; contributor to CARE.</p>
+            <p class="person__bio" data-i18n="zh">高效机器学习算法与投机解码;CARE 项目贡献者。</p>
             <ul class="person__tags">
               <li>Efficient ML Algorithm</li>
               <li>Speculator</li>
@@ -324,8 +385,10 @@
           <img class="person__photo" src="assets/img/people/ziyan-chen.png" alt="Ziyan Chen" />
           <div class="person__info">
             <h4 class="person__name">Ziyan Chen</h4>
-            <p class="person__role">Student Researcher</p>
-            <p class="person__bio">Efficient ML algorithms and KV-cache compression; contributor to OSCAR and CARE.</p>
+            <p class="person__role" data-i18n="en">Student Researcher</p>
+            <p class="person__role" data-i18n="zh">学生研究员</p>
+            <p class="person__bio" data-i18n="en">Efficient ML algorithms and KV-cache compression; contributor to OSCAR and CARE.</p>
+            <p class="person__bio" data-i18n="zh">高效机器学习算法与 KV-cache 压缩;OSCAR 与 CARE 项目贡献者。</p>
             <ul class="person__tags">
               <li>Efficient ML Algorithm</li>
             </ul>
@@ -340,8 +403,10 @@
           <img class="person__photo" src="assets/img/people/ryan-wang.png" alt="Ryan Wang" />
           <div class="person__info">
             <h4 class="person__name">Ryan Wang</h4>
-            <p class="person__role">Student Researcher</p>
-            <p class="person__bio">Efficient ML algorithms and speculative decoding for large-scale machine learning.</p>
+            <p class="person__role" data-i18n="en">Student Researcher</p>
+            <p class="person__role" data-i18n="zh">学生研究员</p>
+            <p class="person__bio" data-i18n="en">Efficient ML algorithms and speculative decoding for large-scale machine learning.</p>
+            <p class="person__bio" data-i18n="zh">面向大规模机器学习的高效算法与投机解码。</p>
             <ul class="person__tags">
               <li>Efficient ML Algorithm</li>
               <li>Speculator</li>
@@ -357,8 +422,10 @@
           <img class="person__photo" src="assets/img/people/zhizhou-sha.jpg" alt="Zhizhou Sha" />
           <div class="person__info">
             <h4 class="person__name">Zhizhou Sha</h4>
-            <p class="person__role">Student Researcher</p>
-            <p class="person__bio">Quantization-aware training for efficient and accurate large language models.</p>
+            <p class="person__role" data-i18n="en">Student Researcher</p>
+            <p class="person__role" data-i18n="zh">学生研究员</p>
+            <p class="person__bio" data-i18n="en">Quantization-aware training for efficient and accurate large language models.</p>
+            <p class="person__bio" data-i18n="zh">面向高效且高精度大语言模型的量化感知训练。</p>
             <ul class="person__tags">
               <li>Quantization</li>
               <li>Quantization-Aware Training</li>
@@ -366,7 +433,7 @@
             <div class="person__links">
               <a href="https://github.com/JamesSand" target="_blank" rel="noopener">GitHub</a>
               <a href="https://scholar.google.com/citations?user=eAObdYgAAAAJ" target="_blank" rel="noopener">Scholar</a>
-              <a href="https://jamessand.github.io/" target="_blank" rel="noopener">Homepage</a>
+              <a href="https://jamessand.github.io/" target="_blank" rel="noopener"><span data-i18n="en">Homepage</span><span data-i18n="zh">主页</span></a>
             </div>
           </div>
         </article>
@@ -375,8 +442,10 @@
           <img class="person__photo" src="assets/img/people/yuqing-jian.jpg" alt="Yuqing Jian" />
           <div class="person__info">
             <h4 class="person__name">Yuqing Jian</h4>
-            <p class="person__role">Student Researcher</p>
-            <p class="person__bio">Quantization-aware training for efficient, low-bit large language models.</p>
+            <p class="person__role" data-i18n="en">Student Researcher</p>
+            <p class="person__role" data-i18n="zh">学生研究员</p>
+            <p class="person__bio" data-i18n="en">Quantization-aware training for efficient, low-bit large language models.</p>
+            <p class="person__bio" data-i18n="zh">面向高效低比特大语言模型的量化感知训练。</p>
             <ul class="person__tags">
               <li>Quantization</li>
               <li>Quantization-Aware Training</li>
@@ -392,8 +461,10 @@
           <img class="person__photo" src="assets/img/people/jisen-li.jpg" alt="Jisen Li" />
           <div class="person__info">
             <h4 class="person__name">Jisen Li</h4>
-            <p class="person__role">Student Researcher</p>
-            <p class="person__bio">Post-training quantization and KV-cache compression for efficient LLM serving; contributor to OSCAR.</p>
+            <p class="person__role" data-i18n="en">Student Researcher</p>
+            <p class="person__role" data-i18n="zh">学生研究员</p>
+            <p class="person__bio" data-i18n="en">Post-training quantization and KV-cache compression for efficient LLM serving; contributor to OSCAR.</p>
+            <p class="person__bio" data-i18n="zh">面向高效 LLM 服务的训练后量化与 KV-cache 压缩;OSCAR 项目贡献者。</p>
             <ul class="person__tags">
               <li>Post-Training Quantization</li>
               <li>KV-Cache Quantization</li>
@@ -408,8 +479,10 @@
           <img class="person__photo" src="assets/img/people/yiyang-guo.jpg" alt="Yiyang Guo" />
           <div class="person__info">
             <h4 class="person__name">Yiyang Guo</h4>
-            <p class="person__role">Student Researcher</p>
-            <p class="person__bio">Post-training-driven modeling with a focus on Mixture-of-Experts (MoE) training.</p>
+            <p class="person__role" data-i18n="en">Student Researcher</p>
+            <p class="person__role" data-i18n="zh">学生研究员</p>
+            <p class="person__bio" data-i18n="en">Post-training-driven modeling with a focus on Mixture-of-Experts (MoE) training.</p>
+            <p class="person__bio" data-i18n="zh">后训练驱动的建模,聚焦 Mixture-of-Experts (MoE) 训练。</p>
             <ul class="person__tags">
               <li>Modeling</li>
               <li>Mixture-of-Experts</li>
@@ -428,9 +501,12 @@
   <section class="section section--alt" id="projects">
     <div class="container">
       <div class="section__head">
-        <span class="eyebrow">Projects</span>
-        <h2 class="section__title">Open-source research</h2>
-        <p class="section__sub">Selected projects from the lab — open the preview page for details, papers, and code.</p>
+        <span class="eyebrow" data-i18n="en">Projects</span>
+        <span class="eyebrow" data-i18n="zh">项目</span>
+        <h2 class="section__title" data-i18n="en">Open-source research</h2>
+        <h2 class="section__title" data-i18n="zh">开源研究</h2>
+        <p class="section__sub" data-i18n="en">Selected projects from the lab — open the preview page for details, papers, and code.</p>
+        <p class="section__sub" data-i18n="zh">实验室的精选项目——点击进入可查看详情、论文与代码。</p>
       </div>
       <div class="projects">
         <a class="project reveal" href="projects/oscar.html">
@@ -444,7 +520,8 @@
             </div>
             <p class="project__venue">2-bit KV-cache quantization · 2026</p>
             <p class="project__desc">Attention-aware offline rotations compress the KV cache to 2.28 bits/element — ~8× memory reduction and up to ~7× higher throughput with near-BF16 accuracy.</p>
-            <span class="project__link">View project →</span>
+            <span class="project__link" data-i18n="en">View project →</span>
+            <span class="project__link" data-i18n="zh">查看项目 →</span>
           </div>
         </a>
 
@@ -459,7 +536,8 @@
             </div>
             <p class="project__venue">Multi-Head Latent Attention · ICLR 2026</p>
             <p class="project__desc">Covariance-aware low-rank decomposition that converts pretrained GQA/MHA into MLA — up to 215× lower one-shot perplexity at matched KV budgets.</p>
-            <span class="project__link">View project →</span>
+            <span class="project__link" data-i18n="en">View project →</span>
+            <span class="project__link" data-i18n="zh">查看项目 →</span>
           </div>
         </a>
 
@@ -474,7 +552,8 @@
             </div>
             <p class="project__venue">Hybrid Linear Attention Distillation · 2026</p>
             <p class="project__desc">Taylor-guided initialization for converting Transformers into hybrid GatedDeltaNet students — up to 88× lower initial perplexity and 4.9–9.2× fewer distillation tokens.</p>
-            <span class="project__link">View project →</span>
+            <span class="project__link" data-i18n="en">View project →</span>
+            <span class="project__link" data-i18n="zh">查看项目 →</span>
           </div>
         </a>
       </div>
@@ -485,17 +564,22 @@
   <section class="section" id="contact">
     <div class="container">
       <div class="section__head">
-        <span class="eyebrow">Contact</span>
-        <h2 class="section__title">Get in touch</h2>
+        <span class="eyebrow" data-i18n="en">Contact</span>
+        <span class="eyebrow" data-i18n="zh">联系</span>
+        <h2 class="section__title" data-i18n="en">Get in touch</h2>
+        <h2 class="section__title" data-i18n="zh">联系我们</h2>
       </div>
       <div class="prose">
-        <p class="prose__lead">
+        <p class="prose__lead" data-i18n="en">
           We welcome collaborators, prospective students, and contributors who care about
           efficient, open machine learning and systems.
         </p>
+        <p class="prose__lead" data-i18n="zh">
+          我们欢迎关注高效、开放的机器学习与系统的合作者、有意申请的同学,以及开源贡献者。
+        </p>
         <p class="contact__actions">
-          <a href="mailto:zhongzhu@futuremls.org" class="btn btn--primary">Email the lab</a>
-          <a href="https://github.com/FutureMLS-Lab" class="btn btn--ghost" target="_blank" rel="noopener">View our GitHub ↗</a>
+          <a href="mailto:zhongzhu@futuremls.org" class="btn btn--primary"><span data-i18n="en">Email the lab</span><span data-i18n="zh">发邮件给我们</span></a>
+          <a href="https://github.com/FutureMLS-Lab" class="btn btn--ghost" target="_blank" rel="noopener"><span data-i18n="en">View our GitHub ↗</span><span data-i18n="zh">访问我们的 GitHub ↗</span></a>
         </p>
       </div>
     </div>
@@ -512,16 +596,23 @@
         </div>
       </div>
       <nav class="footer__links" aria-label="Footer">
-        <a href="#about">About</a>
+        <a href="#about"><span data-i18n="en">About</span><span data-i18n="zh">关于</span></a>
         <a href="#founder">Zhongzhu Zhou</a>
-        <a href="#research">Research</a>
-        <a href="#team">Team</a>
-        <a href="#projects">Projects</a>
+        <a href="#research"><span data-i18n="en">Research</span><span data-i18n="zh">研究</span></a>
+        <a href="#team"><span data-i18n="en">Team</span><span data-i18n="zh">团队</span></a>
+        <a href="#projects"><span data-i18n="en">Projects</span><span data-i18n="zh">项目</span></a>
         <a href="https://github.com/FutureMLS-Lab" target="_blank" rel="noopener">GitHub</a>
       </nav>
-      <p class="footer__copy">© <span id="year">2026</span> Future Machine Learning &amp; Systems Lab. Founded by Zhongzhu Zhou.</p>
+      <p class="footer__copy">© <span id="year">2026</span>
+        <span data-i18n="en">Future Machine Learning &amp; Systems Lab. Founded by Zhongzhu Zhou.</span>
+        <span data-i18n="zh">Future Machine Learning &amp; Systems Lab. 由 Zhongzhu Zhou 创立。</span>
+      </p>
     </div>
   </footer>
+
+  <button class="langtoggle" id="langToggle" type="button" aria-label="Switch language / 切换语言">
+    <span data-i18n="en">中文</span><span data-i18n="zh">English</span>
+  </button>
 
   <script src="assets/js/main.js"></script>
 </body>

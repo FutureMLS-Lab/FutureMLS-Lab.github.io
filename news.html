@@ -1,11 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>News — FutureMLS Lab</title>
   <meta name="description" content="News and updates from the Future Machine Learning & Systems (FutureMLS) Lab — releases, milestones, and publications." />
   <link rel="icon" type="image/png" href="assets/img/logo.png" />
+
+  <!-- Restore the saved language before first paint -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem("lang") === "zh") {
+          document.documentElement.dataset.lang = "zh";
+          document.documentElement.lang = "zh-CN";
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <link rel="preload" href="assets/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/css/style.css" />
@@ -19,8 +32,8 @@
         <span class="nav__brand-text">FutureMLS&nbsp;Lab</span>
       </a>
       <nav class="nav__links" id="navLinks" aria-label="Primary">
-        <a href="index.html">Home</a>
-        <a href="news.html" aria-current="page">News</a>
+        <a href="index.html"><span data-i18n="en">Home</span><span data-i18n="zh">首页</span></a>
+        <a href="news.html" aria-current="page"><span data-i18n="en">News</span><span data-i18n="zh">新闻</span></a>
         <a href="https://github.com/FutureMLS-Lab" class="nav__ext" target="_blank" rel="noopener">GitHub</a>
       </nav>
       <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
@@ -30,70 +43,91 @@
   </header>
 
   <main class="proj container">
-    <a class="proj__back" href="index.html#home">← Back to home</a>
+    <a class="proj__back" href="index.html#home"><span data-i18n="en">← Back to home</span><span data-i18n="zh">← 返回首页</span></a>
 
-    <span class="eyebrow">News</span>
-    <h1 class="proj__title">News &amp; Updates</h1>
-    <p class="proj__lead">
+    <span class="eyebrow" data-i18n="en">News</span>
+    <span class="eyebrow" data-i18n="zh">新闻</span>
+    <h1 class="proj__title" data-i18n="en">News &amp; Updates</h1>
+    <h1 class="proj__title" data-i18n="zh">新闻与动态</h1>
+    <p class="proj__lead" data-i18n="en">
       Releases, milestones, and publications from the Future Machine Learning &amp; Systems Lab.
+    </p>
+    <p class="proj__lead" data-i18n="zh">
+      来自 Future Machine Learning &amp; Systems Lab 的发布、里程碑与论文动态。
     </p>
 
     <ul class="news">
       <li class="news__item reveal">
         <div class="news__meta">
           <span class="news__date">Jun 26, 2026</span>
-          <span class="news__cat">Project</span>
+          <span class="news__cat" data-i18n="en">Project</span>
+          <span class="news__cat" data-i18n="zh">项目</span>
         </div>
-        <p class="news__text">Happy to see community interest in bringing <strong><a href="projects/oscar.html">OSCAR</a></strong> toward vLLM serving workflows. Grateful to the contributors pushing broader support for deployable rotation-based KV-cache quantization in mainstream LLM serving stacks.</p>
+        <p class="news__text" data-i18n="en">Happy to see community interest in bringing <strong><a href="projects/oscar.html">OSCAR</a></strong> toward vLLM serving workflows. Grateful to the contributors pushing broader support for deployable rotation-based KV-cache quantization in mainstream LLM serving stacks.</p>
+        <p class="news__text" data-i18n="zh">很高兴看到社区正在把 <strong><a href="projects/oscar.html">OSCAR</a></strong> 推向 vLLM 的服务链路。感谢各位贡献者,让基于旋转的可部署 KV-cache 量化在主流 LLM 服务栈中获得更广泛的支持。</p>
       </li>
       <li class="news__item reveal">
         <div class="news__meta">
           <span class="news__date">Jun 19, 2026</span>
-          <span class="news__cat">Project</span>
+          <span class="news__cat" data-i18n="en">Project</span>
+          <span class="news__cat" data-i18n="zh">项目</span>
         </div>
-        <p class="news__text"><strong><a href="projects/oscar.html">OSCAR</a></strong> has been covered by multiple tech media outlets, including Towards AI, ModelScope, MarkTechPost, QbitAI (量子位), and Synced (机器之心), reaching 100,000+ reads across platforms. Grateful for the community interest in deployable 2-bit KV-cache quantization.</p>
+        <p class="news__text" data-i18n="en"><strong><a href="projects/oscar.html">OSCAR</a></strong> has been covered by multiple tech media outlets, including Towards AI, ModelScope, MarkTechPost, QbitAI (量子位), and Synced (机器之心), reaching 100,000+ reads across platforms. Grateful for the community interest in deployable 2-bit KV-cache quantization.</p>
+        <p class="news__text" data-i18n="zh"><strong><a href="projects/oscar.html">OSCAR</a></strong> 被多家科技媒体报道,包括 Towards AI、ModelScope、MarkTechPost、量子位与机器之心,全平台阅读量超过 100,000 次。感谢社区对可部署 2-bit KV-cache 量化的关注。</p>
       </li>
       <li class="news__item reveal">
         <div class="news__meta">
           <span class="news__date">Jun 18, 2026</span>
-          <span class="news__cat">Project</span>
+          <span class="news__cat" data-i18n="en">Project</span>
+          <span class="news__cat" data-i18n="zh">项目</span>
         </div>
-        <p class="news__text">Released <strong><a href="projects/taylor-calibrate.html">Taylor-Calibrate</a></strong>: Principled Initialization for Hybrid Linear Attention Distillation. The codebase distills Qwen/Llama softmax-attention Transformers into hybrid linear-attention students built on GatedDeltaNet, using Taylor-series-informed initialization before staged distillation.</p>
+        <p class="news__text" data-i18n="en">Released <strong><a href="projects/taylor-calibrate.html">Taylor-Calibrate</a></strong>: Principled Initialization for Hybrid Linear Attention Distillation. The codebase distills Qwen/Llama softmax-attention Transformers into hybrid linear-attention students built on GatedDeltaNet, using Taylor-series-informed initialization before staged distillation.</p>
+        <p class="news__text" data-i18n="zh">发布 <strong><a href="projects/taylor-calibrate.html">Taylor-Calibrate</a></strong>:面向混合线性注意力蒸馏的原理化初始化方法。该代码库把 Qwen/Llama 的 softmax attention Transformer 蒸馏为基于 GatedDeltaNet 的混合线性注意力学生模型,并在分阶段蒸馏前先完成基于泰勒展开的初始化。</p>
       </li>
       <li class="news__item reveal">
         <div class="news__meta">
           <span class="news__date">Jun 15, 2026</span>
-          <span class="news__cat news__cat--paper">Paper</span>
+          <span class="news__cat news__cat--paper" data-i18n="en">Paper</span>
+          <span class="news__cat news__cat--paper" data-i18n="zh">论文</span>
         </div>
-        <p class="news__text">Our paper <strong><a href="projects/oscar.html">OSCAR</a>: Offline Spectral Covariance-Aware Rotation for 2-bit KV Cache Quantization</strong> has been accepted by <strong>ACL SELVA 2026</strong>!</p>
+        <p class="news__text" data-i18n="en">Our paper <strong><a href="projects/oscar.html">OSCAR</a>: Offline Spectral Covariance-Aware Rotation for 2-bit KV Cache Quantization</strong> has been accepted by <strong>ACL SELVA 2026</strong>!</p>
+        <p class="news__text" data-i18n="zh">我们的论文 <strong><a href="projects/oscar.html">OSCAR</a>: Offline Spectral Covariance-Aware Rotation for 2-bit KV Cache Quantization</strong> 已被 <strong>ACL SELVA 2026</strong> 接收!</p>
       </li>
       <li class="news__item reveal">
         <div class="news__meta">
           <span class="news__date">Jun 10, 2026</span>
-          <span class="news__cat">Project</span>
+          <span class="news__cat" data-i18n="en">Project</span>
+          <span class="news__cat" data-i18n="zh">项目</span>
         </div>
-        <p class="news__text">Huge thanks to the open-source community — <strong><a href="projects/oscar.html">OSCAR</a></strong> has reached 500 stars on GitHub and now supports local llama.cpp usage, making 2-bit KV-cache quantization easier to try on local LLM deployments.</p>
+        <p class="news__text" data-i18n="en">Huge thanks to the open-source community — <strong><a href="projects/oscar.html">OSCAR</a></strong> has reached 500 stars on GitHub and now supports local llama.cpp usage, making 2-bit KV-cache quantization easier to try on local LLM deployments.</p>
+        <p class="news__text" data-i18n="zh">衷心感谢开源社区——<strong><a href="projects/oscar.html">OSCAR</a></strong> 的 GitHub star 数已达 500,并且现已支持在本地 llama.cpp 中使用,让 2-bit KV-cache 量化更容易在本地 LLM 部署上试用。</p>
       </li>
       <li class="news__item reveal">
         <div class="news__meta">
           <span class="news__date">May 26, 2026</span>
-          <span class="news__cat">Project</span>
+          <span class="news__cat" data-i18n="en">Project</span>
+          <span class="news__cat" data-i18n="zh">项目</span>
         </div>
-        <p class="news__text"><strong><a href="projects/oscar.html">OSCAR</a></strong> crosses 300&nbsp;★ on GitHub in its first week — thanks to the open-source community.</p>
+        <p class="news__text" data-i18n="en"><strong><a href="projects/oscar.html">OSCAR</a></strong> crosses 300&nbsp;★ on GitHub in its first week — thanks to the open-source community.</p>
+        <p class="news__text" data-i18n="zh"><strong><a href="projects/oscar.html">OSCAR</a></strong> 上线首周 GitHub star 数突破 300&nbsp;★——感谢开源社区。</p>
       </li>
       <li class="news__item reveal">
         <div class="news__meta">
           <span class="news__date">May 19, 2026</span>
-          <span class="news__cat">Project</span>
+          <span class="news__cat" data-i18n="en">Project</span>
+          <span class="news__cat" data-i18n="zh">项目</span>
         </div>
-        <p class="news__text"><strong><a href="projects/oscar.html">OSCAR</a></strong> released — 2-bit KV-cache serving at 2.28 effective bits/element with near-BF16 accuracy on Qwen3 and GLM-4.7.</p>
+        <p class="news__text" data-i18n="en"><strong><a href="projects/oscar.html">OSCAR</a></strong> released — 2-bit KV-cache serving at 2.28 effective bits/element with near-BF16 accuracy on Qwen3 and GLM-4.7.</p>
+        <p class="news__text" data-i18n="zh"><strong><a href="projects/oscar.html">OSCAR</a></strong> 正式发布——在 Qwen3 与 GLM-4.7 上以 2.28 等效 bit/元素实现 2-bit KV-cache 服务,精度接近 BF16。</p>
       </li>
       <li class="news__item reveal">
         <div class="news__meta">
           <span class="news__date">Apr 2026</span>
-          <span class="news__cat news__cat--paper">Paper</span>
+          <span class="news__cat news__cat--paper" data-i18n="en">Paper</span>
+          <span class="news__cat news__cat--paper" data-i18n="zh">论文</span>
         </div>
-        <p class="news__text"><strong><a href="projects/care.html">CARE</a></strong> presented at <strong>ICLR 2026</strong>: covariance-aware, rank-enhanced decomposition for Multi-Head Latent Attention.</p>
+        <p class="news__text" data-i18n="en"><strong><a href="projects/care.html">CARE</a></strong> presented at <strong>ICLR 2026</strong>: covariance-aware, rank-enhanced decomposition for Multi-Head Latent Attention.</p>
+        <p class="news__text" data-i18n="zh"><strong><a href="projects/care.html">CARE</a></strong> 在 <strong>ICLR 2026</strong> 发表:面向 Multi-Head Latent Attention 的协方差感知、秩增强分解方法。</p>
       </li>
     </ul>
   </main>
@@ -109,15 +143,22 @@
         </div>
       </div>
       <nav class="footer__links" aria-label="Footer">
-        <a href="index.html#about">About</a>
-        <a href="news.html">News</a>
-        <a href="index.html#team">Team</a>
-        <a href="index.html#projects">Projects</a>
+        <a href="index.html#about"><span data-i18n="en">About</span><span data-i18n="zh">关于</span></a>
+        <a href="news.html"><span data-i18n="en">News</span><span data-i18n="zh">新闻</span></a>
+        <a href="index.html#team"><span data-i18n="en">Team</span><span data-i18n="zh">团队</span></a>
+        <a href="index.html#projects"><span data-i18n="en">Projects</span><span data-i18n="zh">项目</span></a>
         <a href="https://github.com/FutureMLS-Lab" target="_blank" rel="noopener">GitHub</a>
       </nav>
-      <p class="footer__copy">© <span id="year">2026</span> Future Machine Learning &amp; Systems Lab. Founded by Zhongzhu Zhou.</p>
+      <p class="footer__copy">© <span id="year">2026</span>
+        <span data-i18n="en">Future Machine Learning &amp; Systems Lab. Founded by Zhongzhu Zhou.</span>
+        <span data-i18n="zh">Future Machine Learning &amp; Systems Lab. 由 Zhongzhu Zhou 创立。</span>
+      </p>
     </div>
   </footer>
+
+  <button class="langtoggle" id="langToggle" type="button" aria-label="Switch language / 切换语言">
+    <span data-i18n="en">中文</span><span data-i18n="zh">English</span>
+  </button>
 
   <script src="assets/js/main.js"></script>
 </body>

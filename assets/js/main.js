@@ -36,6 +36,21 @@
     );
   }
 
+  /* ---------- Language toggle (EN default, choice remembered) ---------- */
+  const langToggle = document.getElementById("langToggle");
+  if (langToggle) {
+    langToggle.addEventListener("click", () => {
+      const next = document.documentElement.dataset.lang === "zh" ? "en" : "zh";
+      document.documentElement.dataset.lang = next;
+      document.documentElement.lang = next === "zh" ? "zh-CN" : "en";
+      try {
+        localStorage.setItem("lang", next);
+      } catch (e) {
+        /* storage unavailable — switch still applies for this page */
+      }
+    });
+  }
+
   /* ---------- Cap homepage news to the latest 5 ---------- */
   const homeNews = document.querySelector("#news .news");
   if (homeNews) {
