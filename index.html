@@ -194,15 +194,59 @@
       </div>
       <ul class="news">
         <li class="news__item reveal">
-          <span class="news__date">May 26, 2026</span>
+          <div class="news__meta">
+            <span class="news__date">Jun 26, 2026</span>
+            <span class="news__cat">Project</span>
+          </div>
+          <p class="news__text">Happy to see community interest in bringing <strong><a href="projects/oscar.html">OSCAR</a></strong> toward vLLM serving workflows. Grateful to the contributors pushing broader support for deployable rotation-based KV-cache quantization in mainstream LLM serving stacks.</p>
+        </li>
+        <li class="news__item reveal">
+          <div class="news__meta">
+            <span class="news__date">Jun 19, 2026</span>
+            <span class="news__cat">Project</span>
+          </div>
+          <p class="news__text"><strong><a href="projects/oscar.html">OSCAR</a></strong> has been covered by multiple tech media outlets, including Towards AI, ModelScope, MarkTechPost, QbitAI (量子位), and Synced (机器之心), reaching 100,000+ reads across platforms. Grateful for the community interest in deployable 2-bit KV-cache quantization.</p>
+        </li>
+        <li class="news__item reveal">
+          <div class="news__meta">
+            <span class="news__date">Jun 18, 2026</span>
+            <span class="news__cat">Project</span>
+          </div>
+          <p class="news__text">Released <strong><a href="projects/taylor-calibrate.html">Taylor-Calibrate</a></strong>: Principled Initialization for Hybrid Linear Attention Distillation. The codebase distills Qwen/Llama softmax-attention Transformers into hybrid linear-attention students built on GatedDeltaNet, using Taylor-series-informed initialization before staged distillation.</p>
+        </li>
+        <li class="news__item reveal">
+          <div class="news__meta">
+            <span class="news__date">Jun 15, 2026</span>
+            <span class="news__cat news__cat--paper">Paper</span>
+          </div>
+          <p class="news__text">Our paper <strong><a href="projects/oscar.html">OSCAR</a>: Offline Spectral Covariance-Aware Rotation for 2-bit KV Cache Quantization</strong> has been accepted by <strong>ACL SELVA 2026</strong>!</p>
+        </li>
+        <li class="news__item reveal">
+          <div class="news__meta">
+            <span class="news__date">Jun 10, 2026</span>
+            <span class="news__cat">Project</span>
+          </div>
+          <p class="news__text">Huge thanks to the open-source community — <strong><a href="projects/oscar.html">OSCAR</a></strong> has reached 500 stars on GitHub and now supports local llama.cpp usage, making 2-bit KV-cache quantization easier to try on local LLM deployments.</p>
+        </li>
+        <li class="news__item reveal">
+          <div class="news__meta">
+            <span class="news__date">May 26, 2026</span>
+            <span class="news__cat">Project</span>
+          </div>
           <p class="news__text"><strong><a href="projects/oscar.html">OSCAR</a></strong> crosses 300&nbsp;★ on GitHub in its first week — thanks to the open-source community.</p>
         </li>
         <li class="news__item reveal">
-          <span class="news__date">May 19, 2026</span>
+          <div class="news__meta">
+            <span class="news__date">May 19, 2026</span>
+            <span class="news__cat">Project</span>
+          </div>
           <p class="news__text"><strong><a href="projects/oscar.html">OSCAR</a></strong> released — 2-bit KV-cache serving at 2.28 effective bits/element with near-BF16 accuracy on Qwen3 and GLM-4.7.</p>
         </li>
         <li class="news__item reveal">
-          <span class="news__date">Apr 2026</span>
+          <div class="news__meta">
+            <span class="news__date">Apr 2026</span>
+            <span class="news__cat news__cat--paper">Paper</span>
+          </div>
           <p class="news__text"><strong><a href="projects/care.html">CARE</a></strong> presented at <strong>ICLR 2026</strong>: covariance-aware, rank-enhanced decomposition for Multi-Head Latent Attention.</p>
         </li>
       </ul>
@@ -416,6 +460,21 @@
             </div>
             <p class="project__venue">Multi-Head Latent Attention · ICLR 2026</p>
             <p class="project__desc">Covariance-aware low-rank decomposition that converts pretrained GQA/MHA into MLA — up to 215× lower one-shot perplexity at matched KV budgets.</p>
+            <span class="project__link">View project →</span>
+          </div>
+        </a>
+
+        <a class="project reveal" href="projects/taylor-calibrate.html">
+          <div class="project__preview">
+            <img src="assets/img/projects/taylor-calibrate.jpg" alt="Taylor-Calibrate preview" loading="lazy" />
+          </div>
+          <div class="project__body">
+            <div class="project__head">
+              <h3 class="project__name">Taylor-Calibrate</h3>
+              <span class="project__tag">Efficient ML Algorithm</span>
+            </div>
+            <p class="project__venue">Hybrid Linear Attention Distillation · 2026</p>
+            <p class="project__desc">Taylor-guided initialization for converting Transformers into hybrid GatedDeltaNet students — up to 88× lower initial perplexity and 4.9–9.2× fewer distillation tokens.</p>
             <span class="project__link">View project →</span>
           </div>
         </a>
