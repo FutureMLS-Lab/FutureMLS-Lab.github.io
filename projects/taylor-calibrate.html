@@ -7,15 +7,27 @@
   <meta name="description" content="Taylor-Calibrate: Principled Initialization for Hybrid Linear Attention Distillation — a FutureMLS Lab project converting pretrained Transformers into hybrid Gated DeltaNet students." />
   <link rel="icon" type="image/png" href="../assets/img/logo.png" />
 
-  <!-- Restore the saved language before first paint -->
+  <!-- Choose the starting language before first paint. A saved choice always wins;
+       otherwise Chinese-locale or mainland-China visitors start in Chinese. -->
   <script>
     (function () {
-      try {
-        if (localStorage.getItem("lang") === "zh") {
-          document.documentElement.dataset.lang = "zh";
-          document.documentElement.lang = "zh-CN";
-        }
-      } catch (e) {}
+      var lang;
+      try { lang = localStorage.getItem("lang"); } catch (e) {}
+      if (lang !== "en" && lang !== "zh") {
+        var zh = false;
+        try {
+          zh = (navigator.languages || [navigator.language || ""]).some(function (l) {
+            return /^zh/i.test(l);
+          }) || /^Asia\/(Shanghai|Chongqing|Harbin|Urumqi)$/.test(
+            Intl.DateTimeFormat().resolvedOptions().timeZone || ""
+          );
+        } catch (e) {}
+        lang = zh ? "zh" : "en";
+      }
+      if (lang === "zh") {
+        document.documentElement.dataset.lang = "zh";
+        document.documentElement.lang = "zh-CN";
+      }
     })();
   </script>
 
