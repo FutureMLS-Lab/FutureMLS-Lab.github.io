@@ -659,6 +659,25 @@ section[id] { scroll-margin-top: 86px; }
   height: 1px;
   background: var(--line);
 }
+.team__subgroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 20px;
+}
+.team__subgroup::before {
+  content: "";
+  width: 14px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+/* A subgroup with no people yet still needs room to read as its own block. */
+.team__subgroup--empty { color: var(--muted); margin-bottom: 44px; }
 .people {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
