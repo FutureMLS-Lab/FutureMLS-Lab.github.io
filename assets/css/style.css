@@ -684,7 +684,7 @@ section[id] { scroll-margin-top: 86px; }
   gap: 30px 34px;
   margin-bottom: 52px;
 }
-.people--advisors { grid-template-columns: repeat(2, 1fr); max-width: 740px; }
+.people--advisors { grid-template-columns: repeat(3, 1fr); }
 .people:last-child { margin-bottom: 0; }
 .person {
   display: flex;
