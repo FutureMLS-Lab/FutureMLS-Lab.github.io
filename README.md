@@ -1,6 +1,6 @@
 # FutureMLS Lab — Website
 
-A clean, academic single-page website for the **Future Machine Learning & Systems (FutureMLS) Lab**,
+A clean, academic single-page website for the **FutureMLS — Nonprofit Research Lab** (Future Machine Learning & Systems Lab),
 founded by **Zhongzhu Zhou**. Pure HTML / CSS / vanilla JS — no build step, no dependencies.
 Editorial, scholarly style (serif headings, restrained navy palette). Designed to be hosted for
 free on GitHub Pages.
