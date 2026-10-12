@@ -81,20 +81,20 @@
       </div>
       <p class="hero__lead" data-i18n="en">
         We study how to make machine learning more capable, efficient, and practical at
-        scale through four connected directions: algorithm and architecture innovation,
-        systems optimization, quantization, and post-training-driven modeling.
+        scale through four connected directions: efficient ML architecture, efficient
+        post-training, efficient post-training engines, and agents.
       </p>
-      <p class="hero__lead" data-i18n="zh">我们研究如何让机器学习在大规模场景下更强大、更高效、更实用,聚焦四个相互关联的方向:算法与架构创新、系统优化、量化,以及后训练驱动的建模。</p>
+      <p class="hero__lead" data-i18n="zh">我们研究如何让机器学习在大规模场景下更强大、更高效、更实用，聚焦四个相互关联的方向：高效机器学习架构、高效后训练、高效后训练引擎，以及智能体。</p>
       <div class="hero__actions">
         <a href="#research" class="btn btn--primary"><span data-i18n="en">Research</span><span data-i18n="zh">研究方向</span></a>
         <a href="#team" class="btn btn--ghost"><span data-i18n="en">Team</span><span data-i18n="zh">团队</span></a>
         <a href="https://github.com/FutureMLS-Lab" class="btn btn--ghost" target="_blank" rel="noopener">GitHub ↗</a>
       </div>
       <ul class="hero__topics" aria-label="Research topics">
-        <li>Efficient ML Algorithm</li>
-        <li>Efficient ML System</li>
-        <li>Quantization</li>
-        <li>Modeling</li>
+        <li>Efficient ML Architecture</li>
+        <li>Efficient Post-Training</li>
+        <li>EFFICIENT POST-TRAINING ENGINES</li>
+        <li>Agents</li>
       </ul>
     </div>
   </section>
@@ -119,13 +119,14 @@
         <p class="prose__lead" data-i18n="zh">欢迎来到 <strong>FutureMLS 非营利研究实验室</strong>（未来机器学习与系统实验室）。我们的研究处在机器学习与计算机系统的交叉地带。今天的基础模型能力惊人,但训练与部署的成本同样高昂。我们的使命,是弥合模型能力的快速增长与真实部署成本之间的鸿沟。</p>
         <p data-i18n="en">
           We pursue <em>algorithm-system co-design</em> across four connected themes:
-          Efficient ML Algorithm for algorithm and architecture innovation, Efficient ML
-          System for systems optimization, Quantization as a core research focus, and Modeling
-          for improving models through training. Our work spans the AI stack, from methods and
-          model design to kernels, runtimes, and serving systems, and is open-source,
-          reproducible, and built to be used.
+          <strong>Efficient ML Architecture</strong> for speculator and attention design;
+          <strong>Efficient Post-Training</strong> for loss design, reinforcement learning, and quantization;
+          <strong>EFFICIENT POST-TRAINING ENGINES</strong> for post-training and inference systems;
+          and <strong>Agents</strong> for coding and scientific discovery. Our work spans the AI stack,
+          from methods and model design to kernels, runtimes, and serving systems, and is
+          open-source, reproducible, and built to be used.
         </p>
-        <p data-i18n="zh">我们围绕四个相互关联的主题推进<em>算法—系统协同设计</em>:Efficient ML Algorithm 负责算法与架构创新,Efficient ML System 负责系统层面的优化,Quantization 是我们的核心研究方向,Modeling 则通过训练让模型变得更强。我们的工作贯穿整个 AI 技术栈——从方法与模型设计,到算子、运行时与服务系统——并且坚持开源、可复现、可直接使用。</p>
+        <p data-i18n="zh">我们围绕四个相互关联的主题推进<em>算法—系统协同设计</em>：<strong>Efficient ML Architecture</strong> 聚焦推测模型与注意力设计；<strong>Efficient Post-Training</strong> 聚焦损失设计、强化学习与量化；<strong>EFFICIENT POST-TRAINING ENGINES</strong> 聚焦后训练与推理系统；<strong>Agents</strong> 聚焦编程与科学发现。我们的工作贯穿整个 AI 技术栈——从方法与模型设计，到算子、运行时与服务系统——并且坚持开源、可复现、可直接使用。</p>
         <p class="prose__meta">
           <span data-i18n="en"><strong>Founder &amp; PI:</strong> Zhongzhu Zhou</span>
           <span data-i18n="zh"><strong>创始人 &amp; 负责人:</strong>周中柱</span>
@@ -202,27 +203,27 @@
       <div class="topics">
         <article class="topic reveal">
           <span class="topic__no">01</span>
-          <h3 class="topic__title">Efficient ML Algorithm</h3>
-          <p data-i18n="en">Algorithm and architecture innovations that improve capability while reducing compute, memory, and deployment cost.</p>
-          <p data-i18n="zh">通过算法与架构创新提升模型能力,同时降低计算、显存与部署成本。</p>
+          <h3 class="topic__title">Efficient ML Architecture</h3>
+          <p data-i18n="en">Efficient Speculator Design and Efficient Attention Design: improve generation and reasoning through attention, residual pathways, routing, and speculators while reducing communication and KV-cache overhead.</p>
+          <p data-i18n="zh">高效推测模型设计与高效注意力设计：通过注意力、残差路径、路由与推测模型改进生成和推理，同时降低通信与 KV-cache 开销。</p>
         </article>
         <article class="topic reveal">
           <span class="topic__no">02</span>
-          <h3 class="topic__title">Efficient ML System</h3>
-          <p data-i18n="en">System-level optimizations that make efficient methods practical end-to-end, from kernels and runtimes to high-throughput serving.</p>
-          <p data-i18n="zh">从算子、运行时到高吞吐服务,用系统层面的优化让高效方法端到端地落地。</p>
+          <h3 class="topic__title">Efficient Post-Training</h3>
+          <p data-i18n="en">Efficient Loss Design and Quantization: improve models after pretraining through reinforcement learning, scaling-law analysis, and low-bit weight, activation, and KV-cache quantization.</p>
+          <p data-i18n="zh">高效损失设计与量化：通过强化学习、缩放规律分析，以及权重、激活与 KV-cache 的低比特量化，提升预训练模型的能力与效率。</p>
         </article>
         <article class="topic reveal">
           <span class="topic__no">03</span>
-          <h3 class="topic__title">Quantization</h3>
-          <p data-i18n="en">A core research focus on low-bit weight, activation, and KV-cache quantization that preserves accuracy while cutting memory and compute.</p>
-          <p data-i18n="zh">我们的核心方向:低比特的权重、激活与 KV-cache 量化,在压缩显存与计算的同时保持精度。</p>
+          <h3 class="topic__title">EFFICIENT POST-TRAINING ENGINES</h3>
+          <p data-i18n="en">Post Training Engine and Inference Engine: build practical training and serving systems with asynchronous RL, training–serving loops, efficient kernels, KV infrastructure, and scheduling.</p>
+          <p data-i18n="zh">后训练引擎与推理引擎：通过异步强化学习、训练—服务闭环、高效算子、KV 基础设施与调度，构建实用的训练和服务系统。</p>
         </article>
         <article class="topic reveal">
           <span class="topic__no">04</span>
-          <h3 class="topic__title">Modeling</h3>
-          <p data-i18n="en">Model improvement through training optimization, architecture design, and adaptation methods that make models stronger and easier to use.</p>
-          <p data-i18n="zh">通过训练优化、架构设计与适配方法改进模型,让模型更强、也更易用。</p>
+          <h3 class="topic__title">Agents</h3>
+          <p data-i18n="en">Coding Agents and AI for Science: develop capable coding, tool-using, and scientific agents with better trajectories, adaptation, coordination, and reproducibility at lower training and deployment cost.</p>
+          <p data-i18n="zh">编程智能体与 AI for Science：提升编程、工具使用和科学智能体的轨迹质量、适应能力、协作与可复现性，同时降低训练和部署成本。</p>
         </article>
       </div>
     </div>
@@ -567,7 +568,7 @@
           <div class="project__body">
             <div class="project__head">
               <h3 class="project__name">OSCAR</h3>
-              <span class="project__tag">Quantization</span>
+              <span class="project__tag">Efficient Post-Training</span>
             </div>
             <p class="project__venue">2-bit KV-cache quantization · NeurIPS 2026</p>
             <p class="project__desc">Attention-aware offline rotations compress the KV cache to 2.28 bits/element — ~8× memory reduction and up to ~7× higher throughput with near-BF16 accuracy.</p>
@@ -583,7 +584,7 @@
           <div class="project__body">
             <div class="project__head">
               <h3 class="project__name">CARE</h3>
-              <span class="project__tag">Efficient ML Algorithm</span>
+              <span class="project__tag">Efficient ML Architecture</span>
             </div>
             <p class="project__venue">Multi-Head Latent Attention · ICLR 2026</p>
             <p class="project__desc">Covariance-aware low-rank decomposition that converts pretrained GQA/MHA into MLA — up to 215× lower one-shot perplexity at matched KV budgets.</p>
@@ -599,7 +600,7 @@
           <div class="project__body">
             <div class="project__head">
               <h3 class="project__name">Taylor-Calibrate</h3>
-              <span class="project__tag">Efficient ML Algorithm</span>
+              <span class="project__tag">Efficient ML Architecture</span>
             </div>
             <p class="project__venue">Hybrid Linear Attention Distillation · 2026</p>
             <p class="project__desc">Taylor-guided initialization for converting Transformers into hybrid GatedDeltaNet students — up to 88× lower initial perplexity and 4.9–9.2× fewer distillation tokens.</p>
