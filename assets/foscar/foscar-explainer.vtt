@@ -1,0 +1,16 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.400
+Both paths start with the same 2-bit key codes, scale, offset, and FP8 query.
+
+00:00:02.400 --> 00:00:05.550
+The left path reconstructs FP8 K. FOSCAR builds FP4 K directly from the codes.
+
+00:00:05.550 --> 00:00:07.000
+FOSCAR folds scale and offset into the TMEM partial sum of 3.5.
+
+00:00:07.000 --> 00:00:09.700
+FOSCAR reaches −1.5 first in the schematic timing. The B200 kernel ablation reports 1.17–1.21×.
+
+00:00:09.700 --> 00:00:16.000
+Both logits are −1.5. B200 peak serving throughput rises from 333 to 868 output tokens/s.

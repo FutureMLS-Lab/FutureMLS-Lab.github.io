@@ -605,10 +605,10 @@
       <div class="section__head">
         <span class="eyebrow" data-i18n="en">Projects</span>
         <span class="eyebrow" data-i18n="zh">项目</span>
-        <h2 class="section__title" data-i18n="en">Open-source research</h2>
-        <h2 class="section__title" data-i18n="zh">开源研究</h2>
-        <p class="section__sub" data-i18n="en">Selected projects from the lab — open the preview page for details, papers, and code.</p>
-        <p class="section__sub" data-i18n="zh">实验室的精选项目——点击进入可查看详情、论文与代码。</p>
+        <h2 class="section__title" data-i18n="en">Selected research</h2>
+        <h2 class="section__title" data-i18n="zh">精选研究</h2>
+        <p class="section__sub" data-i18n="en">Explore project pages for research details, papers, and available code.</p>
+        <p class="section__sub" data-i18n="zh">进入项目页可查看研究详情、论文和已公开的代码。</p>
       </div>
       <div class="projects">
         <a class="project reveal" href="projects/oscar.html">
@@ -622,6 +622,22 @@
             </div>
             <p class="project__venue">2-bit KV-cache quantization · NeurIPS 2026</p>
             <p class="project__desc">Attention-aware offline rotations compress the KV cache to 2.28 bits/element — ~8× memory reduction and up to ~7× higher throughput with near-BF16 accuracy.</p>
+            <span class="project__link" data-i18n="en">View project →</span>
+            <span class="project__link" data-i18n="zh">查看项目 →</span>
+          </div>
+        </a>
+
+        <a class="project reveal" href="projects/foscar.html">
+          <div class="project__preview" style="background:#fcf6e6">
+            <img src="assets/foscar/foscar-overview.png" alt="FOSCAR decode paths and B200 serving throughput" loading="lazy" style="object-fit:contain" />
+          </div>
+          <div class="project__body">
+            <div class="project__head">
+              <h3 class="project__name">FOSCAR</h3>
+              <span class="project__tag">Efficient ML System</span>
+            </div>
+            <p class="project__venue">2- and 4-bit KV-cache decode attention · arXiv 2026</p>
+            <p class="project__desc">Affine folding moves scale and offset out of per-value KV reconstruction to accelerate decode attention on Hopper and Blackwell.</p>
             <span class="project__link" data-i18n="en">View project →</span>
             <span class="project__link" data-i18n="zh">查看项目 →</span>
           </div>

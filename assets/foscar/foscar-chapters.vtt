@@ -1,0 +1,16 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.400
+One INT2 cache, two routes
+
+00:00:02.400 --> 00:00:05.550
+Two Tensor Core paths
+
+00:00:05.550 --> 00:00:07.000
+Fold the partial sum
+
+00:00:07.000 --> 00:00:09.700
+FOSCAR finishes first in the illustration
+
+00:00:09.700 --> 00:00:16.000
+Same logit and measured throughput

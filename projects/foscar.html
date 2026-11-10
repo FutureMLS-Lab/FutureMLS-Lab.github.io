@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FOSCAR — Affine folding for low-bit decode attention</title>
+  <meta name="description" content="FOSCAR accelerates paged decode attention over INT2 and INT4 KV caches on Hopper and Blackwell with affine folding.">
+  <meta property="og:title" content="FOSCAR — Affine folding for low-bit decode attention">
+  <meta property="og:description" content="Explore how FOSCAR moves group scales and offsets out of per-value KV dequantization.">
+  <meta property="og:image" content="https://futuremls.org/assets/foscar/foscar-overview.png">
+  <link rel="canonical" href="https://futuremls.org/projects/foscar.html">
+  <link rel="icon" type="image/png" href="../assets/img/futuremls-icon-20261011.png">
+  <script>
+    (function () {
+      var lang;
+      try { lang = localStorage.getItem("lang"); } catch (e) {}
+      if (lang !== "en" && lang !== "zh") {
+        var zh = false;
+        try {
+          zh = (navigator.languages || [navigator.language || ""]).some(function (l) {
+            return /^zh/i.test(l);
+          }) || /^Asia\/(Shanghai|Chongqing|Harbin|Urumqi)$/.test(
+            Intl.DateTimeFormat().resolvedOptions().timeZone || ""
+          );
+        } catch (e) {}
+        lang = zh ? "zh" : "en";
+      }
+      if (lang === "zh") {
+        document.documentElement.dataset.lang = "zh";
+        document.documentElement.lang = "zh-CN";
+      }
+    })();
+  </script>
+  <style>
+    :root {
+      color-scheme:light;
+      --ink:#21232a; --muted:#515965; --rule:#dce1e8;
+      --gold:#78531c; --amber:#eac66e; --cream:#fcf6e6; --blue:#3b5d81;
+      --serif:"Iowan Old Style",Palatino,Georgia,serif;
+      --shadow:0 18px 52px #26344712;
+    }
+    * { box-sizing:border-box; }
+    html[data-lang="en"] [data-i18n="zh"],
+    html[data-lang="zh"] [data-i18n="en"] { display:none !important; }
+    .language-toggle { min-height:36px; border:1px solid var(--rule); border-radius:7px; padding:0 .58rem; background:white; color:var(--ink); font:650 .82rem system-ui,sans-serif; cursor:pointer; }
+    .language-toggle:hover { background:var(--cream); }
+    body { margin:0; background:#f7f8fa; color:var(--ink); font:16px/1.58 system-ui,-apple-system,sans-serif; }
+    a { color:var(--gold); text-underline-offset:.2em; }
+    :focus-visible { outline:3px solid #8b611b; outline-offset:4px; }
+    img,video { display:block; max-width:100%; height:auto; }
+    h1,h2,h3,p,figure { margin:0; }
+    h1,h2 { font-family:var(--serif); line-height:1.13; letter-spacing:-.035em; }
+    h2 { font-size:clamp(1.95rem,3.5vw,2.7rem); }
+    h3 { font-size:1.12rem; line-height:1.35; }
+    p { color:var(--muted); }
+    .wrap { width:min(1200px,calc(100% - 56px)); margin-inline:auto; }
+    .site-header { position:sticky; top:0; z-index:1; border-bottom:1px solid var(--rule); background:#fffffff2; backdrop-filter:blur(12px); }
+    .nav { min-height:62px; display:flex; align-items:center; justify-content:space-between; gap:14px; }
+    .brand { display:flex; align-items:center; gap:8px; color:var(--ink); font-weight:800; letter-spacing:.025em; }
+    .brand img { width:33px; }
+    .nav nav { display:flex; align-items:center; flex-wrap:wrap; gap:6px 21px; }
+    .nav a { text-decoration:none; }
+    .nav nav a { color:var(--muted); font-size:.86rem; font-weight:650; }
+    .nav nav a:hover { color:var(--gold); }
+    .nav nav .nav-link { border:1px solid var(--rule); border-radius:7px; padding:.33rem .65rem; }
+    .hero-band {
+      background:
+        radial-gradient(ellipse at 88% 12%,#d8e4f1ba,transparent 55%),
+        radial-gradient(ellipse at 10% 56%,#f8eacd,transparent 55%),
+        linear-gradient(#61748a0d 1px,transparent 1px),
+        linear-gradient(90deg,#61748a0d 1px,transparent 1px);
+      background-size:auto,auto,46px 46px,46px 46px;
+      border-bottom:1px solid var(--rule);
+    }
+    .hero { display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:clamp(28px,4.5vw,64px); align-items:center; padding:clamp(32px,5.3vw,75px) 0; }
+    .eyebrow { margin-bottom:.55rem; color:var(--gold); text-transform:uppercase; letter-spacing:.105em; font-size:.72rem; font-weight:800; }
+    .title-line { display:flex; align-items:center; gap:10px; margin-left:-7px; }
+    .title-line img { width:clamp(70px,8vw,110px); }
+    .wordmark { font-size:clamp(3.4rem,6vw,5.45rem); line-height:.95; }
+    .title-sub { display:block; max-width:23ch; margin-top:.35rem; font-size:clamp(1.6rem,3vw,2.55rem); }
+    .title-sub em { color:var(--gold); font-style:normal; }
+    .authors { margin-top:1.15rem; color:var(--ink); font-weight:650; font-size:.88rem; line-height:1.6; }
+    .authors span { display:inline-block; }
+    .affiliations { margin-top:.24rem; font-size:.78rem; }
+    .lead { margin-top:1.15rem; max-width:49ch; font-size:1rem; }
+    .buttons { display:flex; flex-wrap:wrap; gap:9px; margin-top:1.2rem; }
+    .button { display:inline-flex; align-items:center; gap:8px; border:1px solid #b6a272; border-radius:8px; background:white; padding:.55rem .82rem; color:var(--ink); font-size:.88rem; font-weight:750; text-decoration:none; }
+    .button svg { width:17px; height:17px; flex:none; fill:currentColor; }
+    .button:hover { border-color:var(--gold); background:var(--cream); }
+    .primary { background:var(--amber); border-color:#b99038; }
+    .primary:hover { background:#f2d68b; }
+    #top,#demo,#mechanism,#performance,#paper { scroll-margin-top:74px; }
+    .card { min-width:0; border:1px solid var(--rule); border-radius:16px; background:white; box-shadow:var(--shadow); }
+    .showcase { padding:clamp(13px,2vw,22px); }
+    .showcase h2 { font-size:clamp(1.5rem,3vw,2rem); }
+    .film { margin-top:.9rem; }
+    .film video { width:100%; aspect-ratio:8 / 5; border:1px solid #e8ddc7; border-radius:10px; background:var(--cream); }
+    .film figcaption { margin-top:.42rem; color:var(--muted); font-size:.75rem; }
+    .throughput { margin-top:1rem; padding-top:.85rem; border-top:1px solid var(--rule); }
+    .chart-head { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:.56rem; }
+    .chart-head h3 { font-size:.87rem; }
+    .gain { flex:none; padding:.18rem .54rem; border:1px solid #e2cc93; border-radius:999px; background:var(--cream); color:var(--gold); font-size:.83rem; font-weight:800; }
+    .bar-row { display:grid; grid-template-columns:6.1rem minmax(0,1fr) 2.4rem; gap:.6rem; align-items:center; margin:.34rem 0; font-size:.8rem; font-variant-numeric:tabular-nums; }
+    .bar-row strong { text-align:right; }
+    .meter { height:10px; border-radius:999px; background:#eef1f5; overflow:hidden; }
+    .meter i { display:block; height:100%; background:var(--blue); border-radius:inherit; }
+    .meter .gold-bar,.metric.int4 i { background:#b4842f; }
+    .chart-note { margin-top:.48rem; font-size:.74rem; }
+    section.content { padding:clamp(36px,5vw,62px) 0; }
+    section.content + section.content { border-top:1px solid var(--rule); }
+    .section-head { max-width:69ch; }
+    .section-head > p:last-child { margin-top:.55rem; }
+    fieldset { min-width:0; margin:1.15rem 0 0; padding:0; border:0; }
+    legend { margin-bottom:.45rem; color:var(--muted); font-size:.83rem; }
+    .choice { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+    .toggle { display:inline-block; margin:0 .3rem .52rem 0; padding:.47rem .74rem; border:1px solid var(--rule); border-radius:7px; background:white; cursor:pointer; font-size:.87rem; font-weight:750; }
+    .choice:checked + .toggle { background:var(--cream); color:var(--gold); border-color:#c9a458; }
+    .choice:focus-visible + .toggle { outline:3px solid #8b611b; outline-offset:3px; }
+    .demo { display:none; padding:clamp(16px,3vw,26px); }
+    #k:checked ~ .demo-k,#v:checked ~ .demo-v { display:block; }
+    .demo p { margin-top:.4rem; }
+    .flow { list-style:none; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin:1rem 0; padding:0; }
+    .flow li { padding:.7rem; background:#f2f5f9; border:1px solid #dae3ec; border-radius:8px; font-size:.92rem; font-weight:650; }
+    .flow li strong { display:block; margin-bottom:.18rem; color:var(--blue); font-size:.7rem; letter-spacing:.06em; text-transform:uppercase; }
+    .flow .fold { background:var(--cream); border-color:#e4d2a8; }
+    .flow .fold strong { color:var(--gold); }
+    .equation { display:block; background:#f2f5f9; border-left:3px solid var(--blue); padding:.68rem .85rem; border-radius:5px; white-space:normal; overflow-wrap:anywhere; }
+    .example,.note { font-size:.88rem; }
+    .demo .example,.note { margin-top:.85rem; }
+    .results { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-top:1.15rem; }
+    .gpu { padding:1.1rem 1.2rem; }
+    .metric { display:grid; grid-template-columns:3rem minmax(0,1fr) 3.7rem; align-items:center; gap:.55rem; margin:.55rem 0; font-variant-numeric:tabular-nums; }
+    .metric strong { text-align:right; }
+    .foot { padding:22px 0 30px; color:var(--muted); font-size:.84rem; border-top:1px solid var(--rule); background:white; }
+    @media (max-width:820px) {
+      .hero { grid-template-columns:1fr; }
+      .hero-copy,.showcase { width:100%; max-width:640px; margin-inline:auto; }
+      .title-sub { max-width:26ch; }
+    }
+    @media (max-width:540px) {
+      .wrap { width:calc(100% - 30px); }
+      .site-header { position:static; }
+      .nav { padding:8px 0; flex-wrap:wrap; gap:4px 12px; }
+      .nav nav { gap:5px 13px; }
+      .results,.flow { grid-template-columns:1fr; }
+      #top,#demo,#mechanism,#performance,#paper { scroll-margin-top:12px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="#top"><img src="../assets/foscar/foscar-logo.png" width="33" height="33" alt="">FOSCAR</a>
+      <nav aria-label="FOSCAR">
+        <a href="../index.html#projects"><span data-i18n="en">Lab projects</span><span data-i18n="zh">实验室项目</span></a>
+        <a href="#demo"><span data-i18n="en">Demo</span><span data-i18n="zh">演示</span></a>
+        <a href="#mechanism"><span data-i18n="en">Method</span><span data-i18n="zh">方法</span></a>
+        <a href="#performance"><span data-i18n="en">Results</span><span data-i18n="zh">结果</span></a>
+        <a class="nav-link" href="https://arxiv.org/abs/2611.09722"><span data-i18n="en">Paper ↗</span><span data-i18n="zh">论文 ↗</span></a>
+        <button type="button" class="language-toggle" id="langToggle" aria-label="Switch language / 切换语言"><span data-i18n="en">中文</span><span data-i18n="zh">English</span></button>
+      </nav>
+    </div>
+  </header>
+  <main id="top">
+    <div class="hero-band">
+      <div class="wrap hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Low-bit decode attention</p>
+          <h1>
+            <span class="title-line"><img src="../assets/foscar/foscar-logo.png" width="110" height="110" alt=""><span class="wordmark">FOSCAR</span></span>
+            <span class="title-sub">Accelerating Decode Attention over 2- and 4-Bit KV Caches through <em>Affine Folding</em></span>
+          </h1>
+          <p class="authors">
+            <span>Donglin Zhuang<sup>1,2</sup>,</span>
+            <span>Pragaash Ponnusamy<sup>1</sup>,</span>
+            <span>Xiaoxia Wu<sup>1</sup>,</span>
+            <span>Shuaiwen Leon Song<sup>2</sup>,</span>
+            <span>Zhongzhu Zhou<sup>1,2</sup></span>
+          </p>
+          <p class="affiliations"><sup>1</sup> Together AI &nbsp; <sup>2</sup> University of Sydney</p>
+          <p class="lead">FOSCAR moves scale and offset out of per-value KV reconstruction. Hopper uses BF16 Tensor Core operands, and Blackwell can feed packed INT2 codes into FP4 Tensor Cores after remapping.</p>
+          <div class="buttons">
+            <a class="button primary" href="https://arxiv.org/abs/2611.09722">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm7 2v5h5l-5-5Zm-5 9v2h8v-2H8Zm0 4v2h6v-2H8Z"/></svg>
+              <span data-i18n="en">Read Paper</span><span data-i18n="zh">阅读论文</span>
+            </a>
+            <a class="button" href="#mechanism"><span data-i18n="en">See the fold ↓</span><span data-i18n="zh">查看折叠过程 ↓</span></a>
+          </div>
+        </div>
+        <article class="card showcase" id="demo" aria-labelledby="demo-title">
+          <p class="eyebrow">Decode pipeline · NVIDIA B200</p>
+          <h2 id="demo-title"><span data-i18n="en">How FOSCAR works</span><span data-i18n="zh">FOSCAR 的工作原理</span></h2>
+          <figure class="film">
+            <video controls playsinline preload="metadata" poster="../assets/foscar/foscar-overview.png" aria-label="FOSCAR explainer">
+              <source src="../assets/foscar/foscar-explainer.mp4" type="video/mp4">
+              <track kind="subtitles" src="../assets/foscar/foscar-explainer.vtt" srclang="en" label="English">
+              <track kind="subtitles" src="../assets/foscar/foscar-explainer.zh-CN.vtt" srclang="zh-CN" label="简体中文">
+              <track kind="chapters" src="../assets/foscar/foscar-chapters.vtt" srclang="en" label="Chapters">
+            </video>
+            <figcaption><span data-i18n="en">16-second silent walkthrough</span><span data-i18n="zh">16 秒无声演示</span> · <a href="../assets/foscar/foscar-explainer.mp4" download>MP4</a> · <a href="../assets/foscar/foscar-overview.png"><span data-i18n="en">Full-size figure</span><span data-i18n="zh">查看原图</span></a></figcaption>
+          </figure>
+          <figure class="throughput">
+            <div class="chart-head"><h3><span data-i18n="en">Peak serving throughput</span><span data-i18n="zh">峰值服务吞吐量</span></h3><span class="gain">2.61×</span></div>
+            <div class="bar-row"><span>OSCAR INT2</span><span class="meter" aria-hidden="true"><i style="width:37%"></i></span><strong>333</strong></div>
+            <div class="bar-row"><span>FOSCAR INT2</span><span class="meter" aria-hidden="true"><i class="gold-bar" style="width:96.4444%"></i></span><strong>868</strong></div>
+            <figcaption class="chart-note"><span data-i18n="en">Output tokens/s on one B200</span><span data-i18n="zh">单张 B200 每秒输出 token 数</span> · <a href="#serving-setup"><span data-i18n="en">Benchmark setup</span><span data-i18n="zh">测试设置</span></a></figcaption>
+          </figure>
+        </article>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <section class="content" id="mechanism">
+        <div class="section-head">
+          <p class="eyebrow"><span data-i18n="en">01 / Mechanism</span><span data-i18n="zh">01 / 方法</span></p>
+          <h2><span data-i18n="en">Move the scale and offset.</span><span data-i18n="zh">将缩放和偏移折入注意力计算</span></h2>
+          <p>Packing KV reduces memory traffic. Reconstructing each value as <code>s · code + z</code> can still bottleneck decode. FOSCAR builds Tensor Core operands from packed codes and moves the affine work to group-level inputs and partial results.</p>
+        </div>
+        <fieldset>
+          <legend><span data-i18n="en">Compare the two folds for token-wise quantization.</span><span data-i18n="zh">比较逐 token 量化中的两种折叠方式。</span></legend>
+          <input class="choice" type="radio" name="fold" id="k" checked>
+          <label class="toggle" for="k">K · Accumulator fold</label>
+          <input class="choice" type="radio" name="fold" id="v">
+          <label class="toggle" for="v">V · Operand fold</label>
+          <article class="card demo demo-k">
+            <h3>Scale the QK partial result</h3>
+            <p>For one token-wise K group, its scale and offset are shared along the head dimension.</p>
+            <ol class="flow"><li><strong>1 · Dot</strong>Q × K codes</li><li class="fold"><strong>2 · Fold</strong>Scale and add offset term</li><li><strong>3 · Continue</strong>Softmax on corrected logits</li></ol>
+            <code class="equation">logit = s<sub>K</sub> · dot(Q, K codes) + z<sub>K</sub> · sum(Q)</code>
+            <p class="example"><strong>Illustration:</strong> Q = [1, 2, 1, 1], codes = [0, 1, 2, 3], s = 0.5, z = −1. Reconstruct first: Q · [−1, −0.5, 0, 0.5] = −1.5. On B200, FP4 operands give dot(Q, y) = 3.5. Fold: 1 × 3.5 − 1 × 5 = −1.5.</p>
+          </article>
+          <article class="card demo demo-v">
+            <h3>Scale attention weights before PV</h3>
+            <p>For token-wise V, scales vary along the token axis that PV reduces over.</p>
+            <ol class="flow"><li class="fold"><strong>1 · Fold</strong>Multiply P by each V scale</li><li><strong>2 · Dot</strong>Use scaled P with V codes</li><li><strong>3 · Correct</strong>Add the weighted offsets</li></ol>
+            <code class="equation">output = Σ<sub>j</sub> (P<sub>j</sub> · s<sub>j</sub>) · V codes<sub>j</sub> + Σ<sub>j</sub> P<sub>j</sub> · z<sub>j</sub></code>
+            <p class="example"><strong>Illustration:</strong> P = [0.25, 0.75], codes = [1, 3], s = [0.5, 1], z = [−1, −1]. On B200, fold s′ = 2s into P, giving [0.25, 1.5]. The FP4 dot product is 2.375. Add the weighted offset −1 to get 1.375.</p>
+          </article>
+        </fieldset>
+        <p class="note">The algebra is equivalent to dequantizing the same cache in exact arithmetic. For channel-wise grouping, K instead folds into Q and V scales the group-local PV accumulator. <a href="https://arxiv.org/html/2611.09722v1#S4.SS1">Paper §4.1 and Figures 3–5 ↗</a></p>
+      </section>
+
+      <section class="content" id="performance">
+        <div class="section-head">
+          <p class="eyebrow"><span data-i18n="en">02 / Evaluation</span><span data-i18n="zh">02 / 实验结果</span></p>
+          <h2><span data-i18n="en">Decode kernel speedup.</span><span data-i18n="zh">解码内核加速</span></h2>
+          <p>Geometric mean speedup over FlashInfer BF16 in the paper. Bars share a 0–4× scale.</p>
+        </div>
+        <div class="results">
+          <figure class="card gpu">
+            <h3>NVIDIA H100</h3>
+            <div class="metric"><span>INT2</span><span class="meter" aria-hidden="true"><i style="width:84%"></i></span><strong>3.36×</strong></div>
+            <div class="metric int4"><span>INT4</span><span class="meter" aria-hidden="true"><i style="width:70.75%"></i></span><strong>2.83×</strong></div>
+          </figure>
+          <figure class="card gpu">
+            <h3>NVIDIA B200</h3>
+            <div class="metric"><span>INT2</span><span class="meter" aria-hidden="true"><i style="width:66.75%"></i></span><strong>2.67×</strong></div>
+            <div class="metric int4"><span>INT4</span><span class="meter" aria-hidden="true"><i style="width:57.5%"></i></span><strong>2.30×</strong></div>
+          </figure>
+        </div>
+        <p class="note">These figures compare decode kernel latency. <a href="https://arxiv.org/html/2611.09722v1#S6.SS1">Paper §6.1 and Figures 8–9 ↗</a></p>
+        <p id="serving-setup" class="note" style="scroll-margin-top:80px">Swapping the OSCAR INT2 decode kernel for FOSCAR raised peak aggregate serving throughput from <strong>333 to 868 output tokens/s (2.61×)</strong>. Both runs use the OSCAR cache policy and rotations on one B200 with Qwen3-8B, 100K input tokens, 1K output tokens, and a 99% prefix-cache hit rate. Each bar is the peak across the tested concurrency levels. <a href="https://arxiv.org/html/2611.09722v1#S6.SS4">Paper §6.4 ↗</a></p>
+      </section>
+
+      <section class="content" id="paper">
+        <p class="eyebrow"><span data-i18n="en">03 / Research artifacts</span><span data-i18n="zh">03 / 研究资料</span></p>
+        <h2><span data-i18n="en">Paper</span><span data-i18n="zh">论文</span></h2>
+        <p>FOSCAR: Accelerating Decode Attention over 2- and 4-Bit KV Caches through Affine Folding.</p>
+        <div class="buttons">
+          <a class="button primary" href="https://arxiv.org/abs/2611.09722">arXiv:2611.09722 ↗</a>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer class="foot"><div class="wrap">FOSCAR · <a href="../index.html">FutureMLS <span data-i18n="en">Lab</span><span data-i18n="zh">实验室</span></a> · © <span id="year">2026</span></div></footer>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
