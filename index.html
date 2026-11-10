@@ -216,8 +216,8 @@
         <article class="topic reveal">
           <span class="topic__no">03</span>
           <h3 class="topic__title">EFFICIENT POST-TRAINING ENGINES</h3>
-          <p data-i18n="en">Post Training Engine and Inference Engine: build practical training and serving systems with asynchronous RL, training–serving loops, efficient kernels, KV infrastructure, and scheduling.</p>
-          <p data-i18n="zh">后训练引擎与推理引擎：通过异步强化学习、训练—服务闭环、高效算子、KV 基础设施与调度，构建实用的训练和服务系统。</p>
+          <p data-i18n="en">Post Training Engine and Inference Engine: build practical training and serving systems with asynchronous RL, training–serving loops, efficient kernels, KV infrastructure, and scheduling. Our latest work, <a href="projects/flashstate.html">FlashState</a>, improves hybrid-state reuse for agentic inference.</p>
+          <p data-i18n="zh">后训练引擎与推理引擎：通过异步强化学习、训练—服务闭环、高效算子、KV 基础设施与调度，构建实用的训练和服务系统。最新工作 <a href="projects/flashstate.html">FlashState</a> 聚焦智能体推理中的混合状态复用。</p>
         </article>
         <article class="topic reveal">
           <span class="topic__no">04</span>
@@ -239,6 +239,16 @@
         <h2 class="section__title" data-i18n="zh">最新动态</h2>
       </div>
       <ul class="news">
+      <li class="news__item reveal">
+        <div class="news__meta">
+          <span class="news__date">Nov 9, 2026</span>
+          <span class="news__cat news__cat--paper" data-i18n="en">Paper</span>
+          <span class="news__cat news__cat--paper" data-i18n="zh">论文</span>
+        </div>
+        <p class="news__text" data-i18n="en">Introducing <strong><a href="projects/flashstate.html">FlashState</a></strong>: flexible hybrid-state management for agentic LLM serving. Our paper is now on <a href="https://www.alphaxiv.org/abs/2611.flashstate" target="_blank" rel="noopener">alphaXiv</a>, with a <a href="https://flashstates.ai" target="_blank" rel="noopener">project page</a> and <a href="https://github.com/FutureMLS-Lab/FlashStates" target="_blank" rel="noopener">open-source code</a>.</p>
+        <p class="news__text" data-i18n="zh">发布 <strong><a href="projects/flashstate.html">FlashState</a></strong>：面向智能体 LLM 服务的灵活混合状态管理系统。论文已上线 <a href="https://www.alphaxiv.org/abs/2611.flashstate" target="_blank" rel="noopener">alphaXiv</a>，并提供<a href="https://flashstates.ai" target="_blank" rel="noopener">项目主页</a>与<a href="https://github.com/FutureMLS-Lab/FlashStates" target="_blank" rel="noopener">开源代码</a>。</p>
+      </li>
+
       <li class="news__item reveal">
         <div class="news__meta">
           <span class="news__date">Sep 24, 2026</span>
@@ -483,9 +493,6 @@
         </article>
       </div>
 
-      <h4 class="team__subgroup team__subgroup--empty" data-i18n="en">PhD Students</h4>
-      <h4 class="team__subgroup team__subgroup--empty" data-i18n="zh">博士生</h4>
-
       <h4 class="team__subgroup" data-i18n="en">Mentored PhDs</h4>
       <h4 class="team__subgroup" data-i18n="zh">指导的博士生</h4>
       <div class="people">
@@ -615,6 +622,22 @@
             </div>
             <p class="project__venue">2-bit KV-cache quantization · NeurIPS 2026</p>
             <p class="project__desc">Attention-aware offline rotations compress the KV cache to 2.28 bits/element — ~8× memory reduction and up to ~7× higher throughput with near-BF16 accuracy.</p>
+            <span class="project__link" data-i18n="en">View project →</span>
+            <span class="project__link" data-i18n="zh">查看项目 →</span>
+          </div>
+        </a>
+
+        <a class="project reveal" href="projects/flashstate.html">
+          <div class="project__preview" style="background:#fff">
+            <img src="assets/img/projects/flashstate-overview.png" alt="FlashState checkpoint placement and hybrid LLM serving results" loading="lazy" style="object-fit:contain" />
+          </div>
+          <div class="project__body">
+            <div class="project__head">
+              <h3 class="project__name">FlashState</h3>
+              <span class="project__tag">Efficient ML System</span>
+            </div>
+            <p class="project__venue">Agentic LLM serving · alphaXiv 2026</p>
+            <p class="project__desc">Exact recurrent checkpoints and cost-aware KV-cache management reduce repeated prefill across agent turns in hybrid LLMs.</p>
             <span class="project__link" data-i18n="en">View project →</span>
             <span class="project__link" data-i18n="zh">查看项目 →</span>
           </div>
