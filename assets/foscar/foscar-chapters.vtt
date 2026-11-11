@@ -1,16 +1,16 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:02.400
-One INT2 cache, two routes
+00:00:00.000 --> 00:00:01.708
+Same INT2 keys
 
-00:00:02.400 --> 00:00:05.550
-Two Tensor Core paths
+00:00:01.708 --> 00:00:07.542
+Two decode paths
 
-00:00:05.550 --> 00:00:07.000
-Fold the partial sum
+00:00:07.542 --> 00:00:09.500
+Equal logits
 
-00:00:07.000 --> 00:00:09.700
-FOSCAR finishes first in the illustration
+00:00:09.500 --> 00:00:12.417
+H100 and B200 kernel speedup
 
-00:00:09.700 --> 00:00:16.000
-Same logit and measured throughput
+00:00:12.417 --> 00:00:16.000
+End-to-end serving throughput
