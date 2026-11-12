@@ -89,7 +89,7 @@
     .button:hover { border-color:var(--gold); background:var(--cream); }
     .primary { background:var(--amber); border-color:#b99038; }
     .primary:hover { background:#f2d68b; }
-    #top,#demo,#mechanism,#performance,#paper { scroll-margin-top:74px; }
+    #top,#demo,#mechanism,#hardware,#performance,#serving-setup { scroll-margin-top:74px; }
     .card { min-width:0; border:1px solid var(--rule); border-radius:16px; background:white; box-shadow:var(--shadow); }
     .showcase { padding:clamp(13px,2vw,22px); }
     .showcase h2 { font-size:clamp(1.5rem,3vw,2rem); }
@@ -110,23 +110,26 @@
     section.content + section.content { border-top:1px solid var(--rule); }
     .section-head { max-width:69ch; }
     .section-head > p:last-child { margin-top:.55rem; }
-    fieldset { min-width:0; margin:1.15rem 0 0; padding:0; border:0; }
-    legend { margin-bottom:.45rem; color:var(--muted); font-size:.83rem; }
-    .choice { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
-    .toggle { display:inline-block; margin:0 .3rem .52rem 0; padding:.47rem .74rem; border:1px solid var(--rule); border-radius:7px; background:white; cursor:pointer; font-size:.87rem; font-weight:750; }
-    .choice:checked + .toggle { background:var(--cream); color:var(--gold); border-color:#c9a458; }
-    .choice:focus-visible + .toggle { outline:3px solid #8b611b; outline-offset:3px; }
-    .demo { display:none; padding:clamp(16px,3vw,26px); }
-    #k:checked ~ .demo-k,#v:checked ~ .demo-v { display:block; }
-    .demo p { margin-top:.4rem; }
-    .flow { list-style:none; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin:1rem 0; padding:0; }
-    .flow li { padding:.7rem; background:#f2f5f9; border:1px solid #dae3ec; border-radius:8px; font-size:.92rem; font-weight:650; }
-    .flow li strong { display:block; margin-bottom:.18rem; color:var(--blue); font-size:.7rem; letter-spacing:.06em; text-transform:uppercase; }
-    .flow .fold { background:var(--cream); border-color:#e4d2a8; }
-    .flow .fold strong { color:var(--gold); }
     .equation { display:block; background:#f2f5f9; border-left:3px solid var(--blue); padding:.68rem .85rem; border-radius:5px; white-space:normal; overflow-wrap:anywhere; }
-    .example,.note { font-size:.88rem; }
-    .demo .example,.note { margin-top:.85rem; }
+    .note { margin-top:1rem; font-size:.82rem; }
+    .paper-detail { margin-top:1rem; border:1px solid var(--rule); border-radius:12px; background:white; padding:0 1rem; }
+    .paper-detail[open] { padding-bottom:1rem; }
+    .paper-detail summary { padding:.8rem 0; color:var(--ink); font-weight:720; cursor:pointer; }
+    .paper-detail summary:hover { color:var(--gold); }
+    .paper-detail p { margin-bottom:.75rem; }
+    .paper-detail p:last-child { margin:.75rem 0 0; }
+    .paper-plates { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
+    .paper-plate + .paper-plate { margin-top:1.25rem; }
+    .paper-detail img { width:100%; }
+    .paper-detail figcaption { margin-top:.5rem; color:var(--muted); font-size:.86rem; }
+    .serving-panel { margin-top:2.4rem; padding-top:1.6rem; border-top:1px solid var(--rule); }
+    .serving-panel h3 { font-family:var(--serif); font-size:1.55rem; }
+    .serving-plate { max-width:600px; margin-inline:auto; }
+    .serving-plate > img { margin-bottom:.65rem; }
+    .serving-table { width:100%; border-collapse:collapse; margin:1.1rem 0; background:white; font-variant-numeric:tabular-nums; }
+    .serving-table th,.serving-table td { border-bottom:1px solid var(--rule); padding:.55rem clamp(.3rem,1.3vw,1rem); text-align:left; font-size:clamp(.79rem,2vw,.96rem); }
+    .serving-table thead { background:#eef1f5; }
+    .serving-table td strong { color:var(--gold); }
     .results { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-top:1.15rem; }
     .gpu { padding:1.1rem 1.2rem; }
     .metric { display:grid; grid-template-columns:3rem minmax(0,1fr) 3.7rem; align-items:center; gap:.55rem; margin:.55rem 0; font-variant-numeric:tabular-nums; }
@@ -142,10 +145,11 @@
       .site-header { position:static; }
       .nav { padding:8px 0; flex-wrap:wrap; gap:4px 12px; }
       .nav nav { gap:5px 13px; }
-      .results,.flow { grid-template-columns:1fr; }
-      #top,#demo,#mechanism,#performance,#paper { scroll-margin-top:12px; }
+      .results,.paper-plates { grid-template-columns:1fr; }
+      #top,#demo,#mechanism,#hardware,#performance,#serving-setup { scroll-margin-top:12px; }
     }
   </style>
+  <link rel="stylesheet" href="../assets/foscar/foscar-figures.css">
 </head>
 <body>
   <header class="site-header">
@@ -155,6 +159,7 @@
         <a href="../index.html#projects"><span data-i18n="en">Lab projects</span><span data-i18n="zh">实验室项目</span></a>
         <a href="#demo"><span data-i18n="en">Demo</span><span data-i18n="zh">演示</span></a>
         <a href="#mechanism"><span data-i18n="en">Method</span><span data-i18n="zh">方法</span></a>
+        <a href="#hardware"><span data-i18n="en">Hardware</span><span data-i18n="zh">硬件</span></a>
         <a href="#performance"><span data-i18n="en">Results</span><span data-i18n="zh">结果</span></a>
         <a class="nav-link" href="https://arxiv.org/abs/2611.09722"><span data-i18n="en">Paper ↗</span><span data-i18n="zh">论文 ↗</span></a>
         <button type="button" class="language-toggle" id="langToggle" aria-label="Switch language / 切换语言"><span data-i18n="en">中文</span><span data-i18n="zh">English</span></button>
@@ -212,39 +217,181 @@
     <div class="wrap">
       <section class="content" id="mechanism">
         <div class="section-head">
-          <p class="eyebrow"><span data-i18n="en">01 / Mechanism</span><span data-i18n="zh">01 / 方法</span></p>
-          <h2><span data-i18n="en">Move the scale and offset.</span><span data-i18n="zh">将缩放和偏移折入注意力计算</span></h2>
-          <p>Packing KV reduces memory traffic. Reconstructing each value as <code>s · code + z</code> can still bottleneck decode. FOSCAR builds Tensor Core operands from packed codes and moves the affine work to group-level inputs and partial results.</p>
+          <h2><span data-i18n="en">Affine folding</span><span data-i18n="zh">仿射折叠</span></h2>
+          <p data-i18n="en">Every decode step reads the KV cache. Packing it into 2 or 4 bits cuts memory traffic, but reconstructing each value still takes GPU instructions. FOSCAR builds Tensor Core operands from packed codes and applies each group's scale to a matrix input or partial result. The offset enters as an output correction.</p>
+          <p data-i18n="zh">每个解码步都要读取 KV 缓存。打包成 2 或 4 bit 可以减少内存流量，逐值重建仍会消耗 GPU 指令。FOSCAR 直接从打包编码构造 Tensor Core 操作数，把每组的缩放应用到矩阵乘法的输入或部分结果，并用偏移修正输出。</p>
         </div>
-        <fieldset>
-          <legend><span data-i18n="en">Compare the two folds for token-wise quantization.</span><span data-i18n="zh">比较逐 token 量化中的两种折叠方式。</span></legend>
-          <input class="choice" type="radio" name="fold" id="k" checked>
-          <label class="toggle" for="k">K · Accumulator fold</label>
-          <input class="choice" type="radio" name="fold" id="v">
-          <label class="toggle" for="v">V · Operand fold</label>
-          <article class="card demo demo-k">
-            <h3>Scale the QK partial result</h3>
-            <p>For one token-wise K group, its scale and offset are shared along the head dimension.</p>
-            <ol class="flow"><li><strong>1 · Dot</strong>Q × K codes</li><li class="fold"><strong>2 · Fold</strong>Scale and add offset term</li><li><strong>3 · Continue</strong>Softmax on corrected logits</li></ol>
-            <code class="equation">logit = s<sub>K</sub> · dot(Q, K codes) + z<sub>K</sub> · sum(Q)</code>
-            <p class="example"><strong>Illustration:</strong> Q = [1, 2, 1, 1], codes = [0, 1, 2, 3], s = 0.5, z = −1. Reconstruct first: Q · [−1, −0.5, 0, 0.5] = −1.5. On B200, FP4 operands give dot(Q, y) = 3.5. Fold: 1 × 3.5 − 1 × 5 = −1.5.</p>
-          </article>
-          <article class="card demo demo-v">
-            <h3>Scale attention weights before PV</h3>
-            <p>For token-wise V, scales vary along the token axis that PV reduces over.</p>
-            <ol class="flow"><li class="fold"><strong>1 · Fold</strong>Multiply P by each V scale</li><li><strong>2 · Dot</strong>Use scaled P with V codes</li><li><strong>3 · Correct</strong>Add the weighted offsets</li></ol>
-            <code class="equation">output = Σ<sub>j</sub> (P<sub>j</sub> · s<sub>j</sub>) · V codes<sub>j</sub> + Σ<sub>j</sub> P<sub>j</sub> · z<sub>j</sub></code>
-            <p class="example"><strong>Illustration:</strong> P = [0.25, 0.75], codes = [1, 3], s = [0.5, 1], z = [−1, −1]. On B200, fold s′ = 2s into P, giving [0.25, 1.5]. The FP4 dot product is 2.375. Add the weighted offset −1 to get 1.375.</p>
-          </article>
-        </fieldset>
-        <p class="note">The algebra is equivalent to dequantizing the same cache in exact arithmetic. For channel-wise grouping, K instead folds into Q and V scales the group-local PV accumulator. <a href="https://arxiv.org/html/2611.09722v1#S4.SS1">Paper §4.1 and Figures 3–5 ↗</a></p>
+        <figure class="card foscar-figure" data-fold-figure data-product="qk" data-group="token" data-fold="acc" data-step="1">
+          <h3><span data-i18n="en">Where the scale lands</span><span data-i18n="zh">缩放作用在哪里</span></h3>
+          <div class="ff-controls" data-figure-controls hidden>
+            <div class="ff-switch" role="group" aria-labelledby="fold-product-label">
+              <small id="fold-product-label"><span data-i18n="en">Product</span><span data-i18n="zh">矩阵乘</span></small>
+              <button type="button" data-set="product" data-value="qk" aria-pressed="true">QKᵀ</button>
+              <button type="button" data-set="product" data-value="pv" aria-pressed="false">PV</button>
+            </div>
+            <div class="ff-switch" role="group" aria-labelledby="fold-group-label">
+              <small id="fold-group-label"><span data-i18n="en">Shared scale</span><span data-i18n="zh">共享缩放</span></small>
+              <button type="button" data-set="group" data-value="token" aria-pressed="true"><span data-i18n="en">Per token</span><span data-i18n="zh">按 token</span></button>
+              <button type="button" data-set="group" data-value="channel" aria-pressed="false"><span data-i18n="en">Per channel</span><span data-i18n="zh">按通道</span></button>
+            </div>
+            <button type="button" class="ff-step" data-next><span data-i18n="en">Step</span><span data-i18n="zh">下一步</span></button>
+            <button type="button" data-play>
+              <span data-play-label="start"><span data-i18n="en">Play</span><span data-i18n="zh">播放</span></span>
+              <span data-play-label="pause"><span data-i18n="en">Pause</span><span data-i18n="zh">暂停</span></span>
+            </button>
+          </div>
+          <p class="ff-live" aria-live="polite">
+            <span data-step-text="1"><span data-i18n="en">Step 1/3 · Find the shared group and the reduction axis.</span><span data-i18n="zh">第 1/3 步 · 找到共享分组与求和方向。</span></span>
+            <span data-step-text="2" hidden><span data-i18n="en">Step 2/3 · Multiply operands built from the codes. Gold shows where the scale applies.</span><span data-i18n="zh">第 2/3 步 · 对编码构造出的操作数做矩阵乘。金色标出缩放的位置。</span></span>
+            <span data-step-text="3" hidden><span data-i18n="en">Step 3/3 · Add the separate offset sum to get the corrected result.</span><span data-i18n="zh">第 3/3 步 · 加上单独求出的偏移和，得到修正结果。</span></span>
+          </p>
+          <div class="fold-body">
+            <div class="fold-kv">
+              <div class="fold-axis fold-axis-d"><span>D · <span data-i18n="en">channels</span><span data-i18n="zh">通道</span></span><i class="ff-arrow"></i>
+                <b data-for-product="qk"><span data-i18n="en">Σ QKᵀ reduces here</span><span data-i18n="zh">Σ QKᵀ 沿此求和</span></b></div>
+              <div class="fold-axis fold-axis-l"><span>L · <span data-i18n="en">cached tokens</span><span data-i18n="zh">缓存 token</span></span><i class="ff-arrow"></i>
+                <b data-for-product="pv" hidden><span data-i18n="en">Σ PV reduces here</span><span data-i18n="zh">Σ PV 沿此求和</span></b></div>
+              <div class="fold-grid" aria-hidden="true">
+                <i data-r="1" data-c="1">q</i><i data-r="1" data-c="2">q</i><i data-r="1" data-c="3">q</i><i data-r="1" data-c="4">q</i><b class="fold-sz fold-sz-row">s<sub>1</sub> z<sub>1</sub></b>
+                <i data-r="2" data-c="1">q</i><i data-r="2" data-c="2">q</i><i data-r="2" data-c="3">q</i><i data-r="2" data-c="4">q</i><b class="fold-sz fold-sz-row">s<sub>2</sub> z<sub>2</sub></b>
+                <i data-r="3" data-c="1">q</i><i data-r="3" data-c="2">q</i><i data-r="3" data-c="3">q</i><i data-r="3" data-c="4">q</i><b class="fold-sz fold-sz-row">s<sub>3</sub> z<sub>3</sub></b>
+                <b class="fold-sz fold-sz-col">s<sub>1</sub> z<sub>1</sub></b><b class="fold-sz fold-sz-col">s<sub>2</sub> z<sub>2</sub></b><b class="fold-sz fold-sz-col">s<sub>3</sub> z<sub>3</sub></b><b class="fold-sz fold-sz-col">s<sub>4</sub> z<sub>4</sub></b>
+              </div>
+              <p class="ff-note"><span data-i18n="en">Illustrative KV tile of quantized values q. Gold marks one group sharing a scale s and offset z.</span><span data-i18n="zh">示意 KV 分块，q 为量化值。金色标出共享同一缩放 s 与偏移 z 的一组。</span></p>
+            </div>
+            <div class="fold-ops">
+              <ol class="fold-path">
+                <li data-node="in"><strong><span data-for-product="qk">Q</span><span data-for-product="pv" hidden>P</span></strong>
+                  <small><span data-i18n="en">other matrix input</span><span data-i18n="zh">另一侧矩阵输入</span></small>
+                  <em class="fold-chip" data-at="operand">× s · <span data-i18n="en">scale lands here</span><span data-i18n="zh">缩放落在这里</span></em></li>
+                <li data-node="mul"><strong><span data-for-product="qk">Q · Kᵀ</span><span data-for-product="pv" hidden>P · V</span></strong>
+                  <small><span data-i18n="en">matrix product on code-derived operands</span><span data-i18n="zh">对编码构造出的操作数做矩阵乘</span></small></li>
+                <li data-node="acc"><strong><span data-i18n="en">Group-local partial result</span><span data-i18n="zh">组内部分和</span></strong>
+                  <em class="fold-chip" data-at="acc">× s · <span data-i18n="en">scale lands here</span><span data-i18n="zh">缩放落在这里</span></em></li>
+                <li data-node="add"><strong data-for-product="qk">+ Σ(z · Q)</strong><strong data-for-product="pv" hidden>+ Σ(z · P)</strong>
+                  <small data-for-product="qk"><span data-i18n="en">separate offset sum over Q, added to the product output before softmax</span><span data-i18n="zh">对 Q 单独求偏移和，在 softmax 之前加到乘积输出上</span></small>
+                  <small data-for-product="pv" hidden><span data-i18n="en">separate offset sum over P, added to the product output before division by the softmax denominator</span><span data-i18n="zh">对 P 单独求偏移和，在除以 softmax 分母之前加到乘积输出上</span></small></li>
+                <li data-node="out"><strong data-for-product="qk">softmax</strong>
+                  <strong data-for-product="pv" hidden><span data-i18n="en">÷ softmax denominator</span><span data-i18n="zh">÷ softmax 分母</span></strong>
+                  <small><span data-i18n="en">corrected result continues</span><span data-i18n="zh">修正后的结果继续计算</span></small></li>
+              </ol>
+              <div class="fold-case" data-case="qk-token">
+                <p class="fold-eq"><mark>s<sub>l</sub></mark> · Σ<sub>d</sub> Q<sub>d</sub> q<sub>l,d</sub> + <u>z<sub>l</sub> · Σ<sub>d</sub> Q<sub>d</sub></u></p>
+                <p><span data-i18n="en">Token-wise K, accumulator fold: each token shares s and z along D, the axis QKᵀ reduces over. The scale multiplies each group-local QK partial result before softmax.</span><span data-i18n="zh">按 token 分组的 K，累加器折叠：每个 token 沿 D 共享 s 与 z，而 QKᵀ 正是沿 D 求和。缩放在 softmax 之前乘到每个组内 QK 部分和上。</span></p>
+              </div>
+              <div class="fold-case" data-case="qk-channel" hidden>
+                <p class="fold-eq">Σ<sub>d</sub> (<mark>s<sub>d</sub></mark> Q<sub>d</sub>) q<sub>l,d</sub> + <u>Σ<sub>d</sub> z<sub>d</sub> Q<sub>d</sub></u></p>
+                <p><span data-i18n="en">Channel-wise K, operand fold: the scale changes inside the sum over D, so it is folded into Q before QKᵀ.</span><span data-i18n="zh">按通道分组的 K，操作数折叠：缩放在沿 D 的求和内部变化，因此在 QKᵀ 之前先折叠进 Q。</span></p>
+              </div>
+              <div class="fold-case" data-case="pv-token" hidden>
+                <p class="fold-eq">Σ<sub>l</sub> (<mark>s<sub>l</sub></mark> P<sub>l</sub>) q<sub>l,d</sub> + <u>Σ<sub>l</sub> z<sub>l</sub> P<sub>l</sub></u></p>
+                <p><span data-i18n="en">Token-wise V, operand fold: the scale changes inside the sum over L, so it is folded into P before PV.</span><span data-i18n="zh">按 token 分组的 V，操作数折叠：缩放在沿 L 的求和内部变化，因此在 PV 之前先折叠进 P。</span></p>
+              </div>
+              <div class="fold-case" data-case="pv-channel" hidden>
+                <p class="fold-eq"><mark>s<sub>d</sub></mark> · Σ<sub>l</sub> P<sub>l</sub> q<sub>l,d</sub> + <u>z<sub>d</sub> · Σ<sub>l</sub> P<sub>l</sub></u></p>
+                <p><span data-i18n="en">Channel-wise V, accumulator fold: each channel shares s and z along L, the axis PV reduces over. The scale multiplies each group-local PV partial result before it joins the output.</span><span data-i18n="zh">按通道分组的 V，累加器折叠：每个通道沿 L 共享 s 与 z，而 PV 正是沿 L 求和。缩放先乘到每个组内 PV 部分和上，再并入输出。</span></p>
+              </div>
+            </div>
+          </div>
+          <figcaption><span data-i18n="en">Interactive adaptation of Figure 4. Gold marks the shared group and the scale term. The dashed underline marks the offset correction.</span><span data-i18n="zh">论文图 4 的交互式改编。金色标出共享分组与缩放项，虚线下划线标出偏移修正。</span></figcaption>
+        </figure>
+        <details class="paper-detail">
+          <summary><span data-i18n="en">Try the arithmetic on four keys</span><span data-i18n="zh">用四个键看折叠怎么算</span></summary>
+          <p data-i18n="en">Use query <code>Q = [1, 2, 1, 1]</code>, INT2 codes <code>q = [0, 1, 2, 3]</code>, scale <code>s = 0.5</code> and offset <code>z = −1</code>. Reconstructing the keys gives <code>[−1, −0.5, 0, 0.5]</code>. Its dot product with Q is <strong>−1.5</strong>.</p>
+          <p data-i18n="zh">设查询 <code>Q = [1, 2, 1, 1]</code>、INT2 编码 <code>q = [0, 1, 2, 3]</code>、缩放 <code>s = 0.5</code>、偏移 <code>z = −1</code>。先重建得到键 <code>[−1, −0.5, 0, 0.5]</code>，与 Q 的点积为 <strong>−1.5</strong>。</p>
+          <code class="equation">s · dot(Q, q) + z · sum(Q) = 0.5 × 7 − 5 = −1.5</code>
+          <p data-i18n="en">The folded route gets the same result in exact arithmetic. It applies scale and offset once to this group's contributions.</p>
+          <p data-i18n="zh">在精确算术下，折叠路径得到同一个结果。缩放和偏移作用在这一组对结果的贡献上。</p>
+        </details>
+      </section>
+
+      <section class="content" id="hardware">
+        <div class="section-head">
+          <h2><span data-i18n="en">From packed bits to Tensor Cores</span><span data-i18n="zh">从打包位到 Tensor Cores</span></h2>
+          <p data-i18n="en">TMA moves packed tiles into shared memory. On Hopper, consumer warpgroups construct BF16 operands and accumulate in registers. On Blackwell, the INT2 path zero-extends codes into FP4 operands in shared memory, and the matrix products accumulate in tensor memory (TMEM).</p>
+          <p data-i18n="zh">TMA 把打包分块搬到共享内存。Hopper 的消费者 warpgroup 构造 BF16 操作数并在寄存器中累加。Blackwell 的 INT2 路径通过补零构造 FP4 操作数，放入共享内存，矩阵乘积累加到张量内存（TMEM）。</p>
+        </div>
+        <figure class="card foscar-figure" data-pipeline-figure data-gpu="h100" data-stage="1">
+          <h3><span data-i18n="en">Follow one KV tile</span><span data-i18n="zh">跟踪一个 KV 分块</span></h3>
+          <div class="ff-controls" data-figure-controls hidden>
+            <div class="ff-switch" role="group" aria-labelledby="pipe-gpu-label">
+              <small id="pipe-gpu-label">GPU</small>
+              <button type="button" data-set="gpu" data-value="h100" aria-pressed="true">H100</button>
+              <button type="button" data-set="gpu" data-value="b200" aria-pressed="false">B200</button>
+            </div>
+            <button type="button" class="ff-step" data-next><span data-i18n="en">Step</span><span data-i18n="zh">下一步</span></button>
+            <button type="button" data-play>
+              <span data-play-label="start"><span data-i18n="en">Play</span><span data-i18n="zh">播放</span></span>
+              <span data-play-label="pause"><span data-i18n="en">Pause</span><span data-i18n="zh">暂停</span></span>
+            </button>
+          </div>
+          <div class="pipe-stages" data-figure-controls hidden role="group" aria-labelledby="pipe-stage-label">
+            <small id="pipe-stage-label"><span data-i18n="en">Stage</span><span data-i18n="zh">阶段</span></small>
+            <button type="button" data-set="stage" data-value="1" aria-pressed="true">1 · <span data-i18n="en">Load</span><span data-i18n="zh">搬运</span></button>
+            <button type="button" data-set="stage" data-value="2" aria-pressed="false">2 · <span data-i18n="en">Build &amp; multiply</span><span data-i18n="zh">构造与乘加</span></button>
+            <button type="button" data-set="stage" data-value="3" aria-pressed="false">3 · <span data-i18n="en">Fold &amp; continue</span><span data-i18n="zh">折叠与后续计算</span></button>
+          </div>
+          <div class="pipe-panel" data-gpu-panel="h100">
+            <section class="pipe-lane"><h4>WG0 · <span data-i18n="en">producer</span><span data-i18n="zh">生产者</span></h4>
+              <p data-s="1"><span data-i18n="en">TMA copies the packed KV tile. For channel-wise K, WG0 also prepares scaled Q.</span><span data-i18n="zh">TMA 搬运打包的 KV 分块。若 K 按通道分组，WG0 还负责准备缩放后的 Q。</span> <span class="ff-chip">HBM → SMEM</span></p>
+              <p data-s="2"><span data-i18n="en">Copies later tiles ahead.</span><span data-i18n="zh">提前搬运后续分块。</span></p>
+              <p data-s="3" class="pipe-idle" aria-hidden="true">—</p></section>
+            <section class="pipe-lane"><h4>WG1 / WG2 · <span data-i18n="en">consumers</span><span data-i18n="zh">消费者</span></h4>
+              <p data-s="1"><span data-i18n="en">The two consumers alternate even and odd tiles; one takes this tile.</span><span data-i18n="zh">两个消费者交替处理奇偶分块，其中一个接手本块。</span></p>
+              <p data-s="2"><span data-i18n="en">Builds BF16 operands from packed bits in registers and issues wgmma for QKᵀ.</span><span data-i18n="zh">在寄存器中由打包比特构造 BF16 操作数，并发出 wgmma 计算 QKᵀ。</span> <span class="ff-chip">BF16 · REG</span></p>
+              <p data-s="3"><span data-i18n="en">QK correction → online softmax → PV → V correction → output, all in registers. At the end, one consumer merges both partial outputs.</span><span data-i18n="zh">QK 修正 → 在线 softmax → PV → V 修正 → 输出，全程在寄存器中完成。最后由一个消费者合并两路部分结果。</span> <span class="ff-chip" data-kind="acc">REG</span></p></section>
+            <section class="pipe-lane"><h4>Tensor Cores</h4>
+              <p data-s="1" class="pipe-idle" aria-hidden="true">—</p>
+              <p data-s="2"><span data-i18n="en">wgmma accumulates QKᵀ in the issuing warpgroup's registers.</span><span data-i18n="zh">wgmma 把 QKᵀ 累加到发出指令的 warpgroup 的寄存器中。</span> <span class="ff-chip" data-kind="acc">REG</span></p>
+              <p data-s="3"><span data-i18n="en">PV accumulates in the same consumer's registers.</span><span data-i18n="zh">PV 同样累加在该消费者的寄存器中。</span> <span class="ff-chip" data-kind="acc">REG</span></p></section>
+          </div>
+          <div class="pipe-panel" data-gpu-panel="b200" hidden>
+            <section class="pipe-lane"><h4>WG0 · <span data-i18n="en">TMA &amp; tcgen05 issue</span><span data-i18n="zh">TMA 与 tcgen05 发射</span></h4>
+              <p data-s="1"><span data-i18n="en">Starts the TMA copy of the packed KV tile.</span><span data-i18n="zh">启动 TMA，搬运打包的 KV 分块。</span> <span class="ff-chip">HBM → SMEM</span></p>
+              <p data-s="2"><span data-i18n="en">Issues tcgen05 for QKᵀ on the prepared operand tile.</span><span data-i18n="zh">对准备好的操作数分块发出 tcgen05，计算 QKᵀ。</span></p>
+              <p data-s="3"><span data-i18n="en">Issues tcgen05 for PV once P is ready.</span><span data-i18n="zh">P 就绪后发出 tcgen05，计算 PV。</span></p></section>
+            <section class="pipe-lane"><h4>WG1–WG3 · CUDA cores</h4>
+              <p data-s="1"><span data-i18n="en">For channel-wise K, the output warpgroup prepares scaled Q.</span><span data-i18n="zh">若 K 按通道分组，由输出 warpgroup 准备缩放后的 Q。</span> <span class="ff-chip">FP8 Q</span></p>
+              <p data-s="2"><span data-i18n="en">The preparation warpgroup builds the KV operand tile in shared memory; INT2 bits become FP4 directly.</span><span data-i18n="zh">准备 warpgroup 在共享内存中构造 KV 操作数分块，INT2 比特直接成为 FP4。</span> <span class="ff-chip">FP4 KV · SMEM</span><span class="ff-chip">FP8 Q/P</span></p>
+              <p data-s="3"><span data-i18n="en">Softmax warpgroup: reads QK, applies K corrections in FP32, computes P. Output warpgroup: reads PV, applies V corrections, keeps the running output.</span><span data-i18n="zh">softmax warpgroup：读取 QK，以 FP32 完成 K 修正并计算 P。输出 warpgroup：读取 PV，完成 V 修正并维护累计输出。</span></p></section>
+            <section class="pipe-lane"><h4>Tensor Cores · TMEM</h4>
+              <p data-s="1" class="pipe-idle" aria-hidden="true">—</p>
+              <p data-s="2"><span data-i18n="en">tcgen05 accumulates QKᵀ in TMEM.</span><span data-i18n="zh">tcgen05 把 QKᵀ 累加到 TMEM。</span> <span class="ff-chip" data-kind="acc">TMEM</span></p>
+              <p data-s="3"><span data-i18n="en">PV accumulates in TMEM, readable by other warpgroups.</span><span data-i18n="zh">PV 累加在 TMEM 中，其他 warpgroup 可以读取。</span> <span class="ff-chip" data-kind="acc">TMEM</span></p></section>
+          </div>
+          <figcaption><span data-i18n="en">Interactive adaptation of Figure 7. Stages show the dependencies for one tile. The original schedules below show how tiles overlap.</span><span data-i18n="zh">论文图 7 的交互式改编。各阶段展示单个分块的依赖关系。下方原图展示不同分块如何重叠执行。</span></figcaption>
+        </figure>
+        <details class="paper-detail" open>
+          <summary><span data-i18n="en">Original register packing and dataflow figures</span><span data-i18n="zh">查看原始寄存器打包与数据流图</span></summary>
+          <div class="paper-plates">
+            <figure>
+              <a href="../assets/foscar/paper-int2-packing.png"><img src="../assets/foscar/paper-int2-packing.png" width="1400" height="1361" loading="lazy" alt="INT2 bit packing and operand construction in Hopper and Blackwell registers"></a>
+              <figcaption><span data-i18n="en">Figure 6a · Register packing and bit-level operand construction</span><span data-i18n="zh">图 6a · 寄存器打包与操作数位构造</span></figcaption>
+            </figure>
+            <figure>
+              <a href="../assets/foscar/paper-int2-dataflow.png"><img src="../assets/foscar/paper-int2-dataflow.png" width="1400" height="1361" loading="lazy" alt="INT2 K dataflow from global memory to Tensor Cores through BF16 registers on Hopper and an FP4 shared-memory tile on Blackwell"></a>
+              <figcaption><span data-i18n="en">Figure 6b · How an INT2 K tile reaches the Tensor Cores</span><span data-i18n="zh">图 6b · INT2 K 分块如何到达 Tensor Cores</span></figcaption>
+            </figure>
+          </div>
+        </details>
+        <details class="paper-detail">
+          <summary><span data-i18n="en">Original H100 and B200 pipeline schedules</span><span data-i18n="zh">查看 H100 和 B200 原始流水线调度图</span></summary>
+          <figure class="paper-plate">
+            <a href="../assets/foscar/paper-pipeline-h100.png"><img src="../assets/foscar/paper-pipeline-h100.png" width="1680" height="287" loading="lazy" alt="H100 schedule with one TMA producer and two consumer warpgroups alternating tiles"></a>
+            <figcaption><span data-i18n="en">Figure 7a · H100, alternating consumer warpgroups</span><span data-i18n="zh">图 7a · H100 的两个消费者 warpgroup 交替处理分块</span></figcaption>
+          </figure>
+          <figure class="paper-plate">
+            <a href="../assets/foscar/paper-pipeline-b200.png"><img src="../assets/foscar/paper-pipeline-b200.png" width="1680" height="641" loading="lazy" alt="B200 schedule with TMA and MMA issue in WG0, operand preparation in WG1, TMEM, and corrections and softmax in WG2 and WG3"></a>
+            <figcaption><span data-i18n="en">Figure 7b · B200, separate issue, operand preparation, and correction lanes</span><span data-i18n="zh">图 7b · B200 分别调度指令发射、操作数准备与修正</span></figcaption>
+          </figure>
+        </details>
       </section>
 
       <section class="content" id="performance">
         <div class="section-head">
-          <p class="eyebrow"><span data-i18n="en">02 / Evaluation</span><span data-i18n="zh">02 / 实验结果</span></p>
-          <h2><span data-i18n="en">Decode kernel speedup.</span><span data-i18n="zh">解码内核加速</span></h2>
-          <p>Geometric mean speedup over FlashInfer BF16 in the paper. Bars share a 0–4× scale.</p>
+          <h2><span data-i18n="en">Decode kernel speedup</span><span data-i18n="zh">解码内核加速</span></h2>
+          <p data-i18n="en">Geometric mean latency speedup over FlashInfer BF16 on each GPU. Bars share a 0–4× scale.</p>
+          <p data-i18n="zh">在各自 GPU 上与 FlashInfer BF16 比较，取延迟加速比的几何平均值。横条使用同一 0–4× 刻度。</p>
         </div>
         <div class="results">
           <figure class="card gpu">
@@ -258,21 +405,35 @@
             <div class="metric int4"><span>INT4</span><span class="meter" aria-hidden="true"><i style="width:57.5%"></i></span><strong>2.30×</strong></div>
           </figure>
         </div>
-        <p class="note">These figures compare decode kernel latency. <a href="https://arxiv.org/html/2611.09722v1#S6.SS1">Paper §6.1 and Figures 8–9 ↗</a></p>
-        <p id="serving-setup" class="note" style="scroll-margin-top:80px">Swapping the OSCAR INT2 decode kernel for FOSCAR raised peak aggregate serving throughput from <strong>333 to 868 output tokens/s (2.61×)</strong>. Both runs use the OSCAR cache policy and rotations on one B200 with Qwen3-8B, 100K input tokens, 1K output tokens, and a 99% prefix-cache hit rate. Each bar is the peak across the tested concurrency levels. <a href="https://arxiv.org/html/2611.09722v1#S6.SS4">Paper §6.4 ↗</a></p>
-      </section>
 
-      <section class="content" id="paper">
-        <p class="eyebrow"><span data-i18n="en">03 / Research artifacts</span><span data-i18n="zh">03 / 研究资料</span></p>
-        <h2><span data-i18n="en">Paper</span><span data-i18n="zh">论文</span></h2>
-        <p>FOSCAR: Accelerating Decode Attention over 2- and 4-Bit KV Caches through Affine Folding.</p>
-        <div class="buttons">
-          <a class="button primary" href="https://arxiv.org/abs/2611.09722">arXiv:2611.09722 ↗</a>
+        <div class="serving-panel" id="serving-setup">
+          <div class="section-head">
+            <h3><span data-i18n="en">Serving with SGLang</span><span data-i18n="zh">SGLang 端到端服务</span></h3>
+            <p data-i18n="en">Replace OSCAR's INT2 decode kernel with FOSCAR while keeping its rotations and BF16 sink and recent windows. The benchmark uses Qwen3-8B, 100K input tokens, 1K output tokens, and a 99% prefix-cache hit rate. Values are peak aggregate output tokens/s across tested concurrency levels.</p>
+            <p data-i18n="zh">将 OSCAR 的 INT2 解码内核换成 FOSCAR，沿用 OSCAR 的旋转和 BF16 起始与近期窗口。测试使用 Qwen3-8B、100K 输入、1K 输出和 99% 前缀缓存命中率。表中为各并发设置下测得的峰值总输出 token/s。</p>
+          </div>
+          <table class="serving-table">
+            <thead><tr><th scope="col">GPU</th><th scope="col">OSCAR INT2</th><th scope="col"><span data-i18n="en">With FOSCAR</span><span data-i18n="zh">换用 FOSCAR</span></th><th scope="col"><span data-i18n="en">Gain</span><span data-i18n="zh">倍数</span></th></tr></thead>
+            <tbody>
+              <tr><th scope="row">H100</th><td>269</td><td>487</td><td><strong>1.81×</strong></td></tr>
+              <tr><th scope="row">B200</th><td>333</td><td>868</td><td><strong>2.61×</strong></td></tr>
+            </tbody>
+          </table>
+          <details class="paper-detail">
+            <summary><span data-i18n="en">See the B200 throughput trade-off</span><span data-i18n="zh">查看 B200 的单用户与总吞吐对比</span></summary>
+            <figure class="paper-plate serving-plate">
+              <img src="../assets/foscar/paper-serving-legend.png" width="1200" height="133" loading="lazy" alt="Legend for FlashInfer BF16, Triton BF16, TRT-LLM FP8, OSCAR INT2, OSCAR INT2 plus FOSCAR, and FOSCAR INT2">
+              <a href="../assets/foscar/paper-serving-b200.png"><img src="../assets/foscar/paper-serving-b200.png" width="1100" height="785" loading="lazy" alt="Original B200 plot of per-user throughput on the horizontal axis and aggregate per-GPU throughput on the vertical axis, at 99% prefix-cache hits"></a>
+              <figcaption><span data-i18n="en">Figure 12c · Each point is one tested concurrency setting. Higher on the vertical axis means more total output tokens per second.</span><span data-i18n="zh">图 12c · 每个点对应一个测试并发设置。纵轴越高，每秒输出的 token 总数越多。</span></figcaption>
+            </figure>
+          </details>
         </div>
+        <p class="note"><span data-i18n="en">Original figures from the FOSCAR paper (arXiv:2611.09722, CC BY 4.0).</span><span data-i18n="zh">原图来自 FOSCAR 论文（arXiv:2611.09722，CC BY 4.0）。</span></p>
       </section>
     </div>
   </main>
   <footer class="foot"><div class="wrap">FOSCAR · <a href="../index.html">FutureMLS <span data-i18n="en">Lab</span><span data-i18n="zh">实验室</span></a> · © <span id="year">2026</span></div></footer>
   <script src="../assets/js/main.js"></script>
+  <script src="../assets/foscar/foscar-figures.js" defer></script>
 </body>
 </html>
