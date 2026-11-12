@@ -149,7 +149,7 @@
       #top,#demo,#mechanism,#hardware,#performance,#serving-setup { scroll-margin-top:12px; }
     }
   </style>
-  <link rel="stylesheet" href="../assets/foscar/foscar-figures.css">
+  <link rel="stylesheet" href="../assets/foscar/foscar-figures.css?v=2">
 </head>
 <body>
   <header class="site-header">
@@ -226,8 +226,8 @@
           <div class="ff-controls" data-figure-controls hidden>
             <div class="ff-switch" role="group" aria-labelledby="fold-product-label">
               <small id="fold-product-label"><span data-i18n="en">Product</span><span data-i18n="zh">矩阵乘</span></small>
-              <button type="button" data-set="product" data-value="qk" aria-pressed="true">QKᵀ</button>
-              <button type="button" data-set="product" data-value="pv" aria-pressed="false">PV</button>
+              <button type="button" data-set="product" data-value="qk" aria-pressed="true">K · QKᵀ</button>
+              <button type="button" data-set="product" data-value="pv" aria-pressed="false">V · PV</button>
             </div>
             <div class="ff-switch" role="group" aria-labelledby="fold-group-label">
               <small id="fold-group-label"><span data-i18n="en">Shared scale</span><span data-i18n="zh">共享缩放</span></small>
@@ -242,9 +242,27 @@
           </div>
           <p class="ff-live" aria-live="polite">
             <span data-step-text="1"><span data-i18n="en">Step 1/3 · Find the shared group and the reduction axis.</span><span data-i18n="zh">第 1/3 步 · 找到共享分组与求和方向。</span></span>
-            <span data-step-text="2" hidden><span data-i18n="en">Step 2/3 · Multiply operands built from the codes. Gold shows where the scale applies.</span><span data-i18n="zh">第 2/3 步 · 对编码构造出的操作数做矩阵乘。金色标出缩放的位置。</span></span>
-            <span data-step-text="3" hidden><span data-i18n="en">Step 3/3 · Add the separate offset sum to get the corrected result.</span><span data-i18n="zh">第 3/3 步 · 加上单独求出的偏移和，得到修正结果。</span></span>
+            <span data-step-text="2" hidden><span data-i18n="en">Step 2/3 · Follow the gold box to see where the scale is applied.</span><span data-i18n="zh">第 2/3 步 · 沿着金色方框，看缩放在哪一步发生。</span></span>
+            <span data-step-text="3" hidden><span data-i18n="en">Step 3/3 · Add the offset correction shown in blue.</span><span data-i18n="zh">第 3/3 步 · 加上蓝色标出的偏移修正。</span></span>
           </p>
+          <div class="fold-mode" aria-live="polite">
+            <div data-case="qk-token">
+              <h4><span data-i18n="en">Scale the QK partial sum</span><span data-i18n="zh">缩放 QK 部分和</span></h4>
+              <p><span data-i18n="en">One token’s scale is shared across the channels that QK sums over.</span><span data-i18n="zh">QK 沿通道求和，同一个 token 的所有通道共享缩放。</span></p>
+            </div>
+            <div data-case="qk-channel" hidden>
+              <h4><span data-i18n="en">Scale Q before QKᵀ</span><span data-i18n="zh">先缩放 Q，再计算 QKᵀ</span></h4>
+              <p><span data-i18n="en">Each channel has its own scale. Apply it to the matching Q component.</span><span data-i18n="zh">每个通道有自己的缩放系数，先把它乘到 Q 对应的分量上。</span></p>
+            </div>
+            <div data-case="pv-token" hidden>
+              <h4><span data-i18n="en">Scale P before PV</span><span data-i18n="zh">先缩放 P，再计算 PV</span></h4>
+              <p><span data-i18n="en">Each token has its own scale. Apply it to the matching attention weight P.</span><span data-i18n="zh">每个 token 有自己的缩放系数，先把它乘到对应的注意力权重 P 上。</span></p>
+            </div>
+            <div data-case="pv-channel" hidden>
+              <h4><span data-i18n="en">Scale the PV partial sum</span><span data-i18n="zh">缩放 PV 部分和</span></h4>
+              <p><span data-i18n="en">One channel’s scale is shared across the tokens that PV sums over.</span><span data-i18n="zh">PV 沿 token 求和，同一个通道的所有 token 共享缩放。</span></p>
+            </div>
+          </div>
           <div class="fold-body">
             <div class="fold-kv">
               <div class="fold-axis fold-axis-d"><span>D · <span data-i18n="en">channels</span><span data-i18n="zh">通道</span></span><i class="ff-arrow"></i>
@@ -263,37 +281,65 @@
               <ol class="fold-path">
                 <li data-node="in"><strong><span data-for-product="qk">Q</span><span data-for-product="pv" hidden>P</span></strong>
                   <small><span data-i18n="en">other matrix input</span><span data-i18n="zh">另一侧矩阵输入</span></small>
-                  <em class="fold-chip" data-at="operand">× s · <span data-i18n="en">scale lands here</span><span data-i18n="zh">缩放落在这里</span></em></li>
+                  <em class="fold-chip" data-at="operand">× s · <span data-i18n="en">scale before multiply</span><span data-i18n="zh">乘法前缩放</span></em></li>
                 <li data-node="mul"><strong><span data-for-product="qk">Q · Kᵀ</span><span data-for-product="pv" hidden>P · V</span></strong>
                   <small><span data-i18n="en">matrix product on code-derived operands</span><span data-i18n="zh">对编码构造出的操作数做矩阵乘</span></small></li>
-                <li data-node="acc"><strong><span data-i18n="en">Group-local partial result</span><span data-i18n="zh">组内部分和</span></strong>
-                  <em class="fold-chip" data-at="acc">× s · <span data-i18n="en">scale lands here</span><span data-i18n="zh">缩放落在这里</span></em></li>
+                <li data-node="acc" data-at="acc"><strong><span data-i18n="en">Group-local partial result</span><span data-i18n="zh">组内部分和</span></strong>
+                  <em class="fold-chip">× s · <span data-i18n="en">scale after multiply</span><span data-i18n="zh">乘法后缩放</span></em></li>
                 <li data-node="add"><strong data-for-product="qk">+ Σ(z · Q)</strong><strong data-for-product="pv" hidden>+ Σ(z · P)</strong>
-                  <small data-for-product="qk"><span data-i18n="en">separate offset sum over Q, added to the product output before softmax</span><span data-i18n="zh">对 Q 单独求偏移和，在 softmax 之前加到乘积输出上</span></small>
-                  <small data-for-product="pv" hidden><span data-i18n="en">separate offset sum over P, added to the product output before division by the softmax denominator</span><span data-i18n="zh">对 P 单独求偏移和，在除以 softmax 分母之前加到乘积输出上</span></small></li>
+                  <small data-for-product="qk"><span data-i18n="en">offset correction before softmax</span><span data-i18n="zh">softmax 前加上偏移修正</span></small>
+                  <small data-for-product="pv" hidden><span data-i18n="en">offset correction before softmax normalization</span><span data-i18n="zh">softmax 归一化前加上偏移修正</span></small></li>
                 <li data-node="out"><strong data-for-product="qk">softmax</strong>
                   <strong data-for-product="pv" hidden><span data-i18n="en">÷ softmax denominator</span><span data-i18n="zh">÷ softmax 分母</span></strong>
                   <small><span data-i18n="en">corrected result continues</span><span data-i18n="zh">修正后的结果继续计算</span></small></li>
               </ol>
-              <div class="fold-case" data-case="qk-token">
-                <p class="fold-eq"><mark>s<sub>l</sub></mark> · Σ<sub>d</sub> Q<sub>d</sub> q<sub>l,d</sub> + <u>z<sub>l</sub> · Σ<sub>d</sub> Q<sub>d</sub></u></p>
-                <p><span data-i18n="en">Token-wise K, accumulator fold: each token shares s and z along D, the axis QKᵀ reduces over. The scale multiplies each group-local QK partial result before softmax.</span><span data-i18n="zh">按 token 分组的 K，累加器折叠：每个 token 沿 D 共享 s 与 z，而 QKᵀ 正是沿 D 求和。缩放在 softmax 之前乘到每个组内 QK 部分和上。</span></p>
+              <div class="fold-terms" data-case="qk-token">
+                <div class="fold-term term-scale">
+                  <small><span data-i18n="en">Scaled product</span><span data-i18n="zh">缩放后的乘积</span></small>
+                  <span class="term-math">s<sub>l</sub> · Σ<sub>d</sub> Q<sub>d</sub> q<sub>l,d</sub></span>
+                </div>
+                <span class="term-plus">+</span>
+                <div class="fold-term term-offset">
+                  <small><span data-i18n="en">Offset correction</span><span data-i18n="zh">偏移修正</span></small>
+                  <span class="term-math">z<sub>l</sub> · Σ<sub>d</sub> Q<sub>d</sub></span>
+                </div>
               </div>
-              <div class="fold-case" data-case="qk-channel" hidden>
-                <p class="fold-eq">Σ<sub>d</sub> (<mark>s<sub>d</sub></mark> Q<sub>d</sub>) q<sub>l,d</sub> + <u>Σ<sub>d</sub> z<sub>d</sub> Q<sub>d</sub></u></p>
-                <p><span data-i18n="en">Channel-wise K, operand fold: the scale changes inside the sum over D, so it is folded into Q before QKᵀ.</span><span data-i18n="zh">按通道分组的 K，操作数折叠：缩放在沿 D 的求和内部变化，因此在 QKᵀ 之前先折叠进 Q。</span></p>
+              <div class="fold-terms" data-case="qk-channel" hidden>
+                <div class="fold-term term-scale">
+                  <small><span data-i18n="en">Scaled product</span><span data-i18n="zh">缩放后的乘积</span></small>
+                  <span class="term-math">Σ<sub>d</sub> (s<sub>d</sub> Q<sub>d</sub>) q<sub>l,d</sub></span>
+                </div>
+                <span class="term-plus">+</span>
+                <div class="fold-term term-offset">
+                  <small><span data-i18n="en">Offset correction</span><span data-i18n="zh">偏移修正</span></small>
+                  <span class="term-math">Σ<sub>d</sub> z<sub>d</sub> Q<sub>d</sub></span>
+                </div>
               </div>
-              <div class="fold-case" data-case="pv-token" hidden>
-                <p class="fold-eq">Σ<sub>l</sub> (<mark>s<sub>l</sub></mark> P<sub>l</sub>) q<sub>l,d</sub> + <u>Σ<sub>l</sub> z<sub>l</sub> P<sub>l</sub></u></p>
-                <p><span data-i18n="en">Token-wise V, operand fold: the scale changes inside the sum over L, so it is folded into P before PV.</span><span data-i18n="zh">按 token 分组的 V，操作数折叠：缩放在沿 L 的求和内部变化，因此在 PV 之前先折叠进 P。</span></p>
+              <div class="fold-terms" data-case="pv-token" hidden>
+                <div class="fold-term term-scale">
+                  <small><span data-i18n="en">Scaled product</span><span data-i18n="zh">缩放后的乘积</span></small>
+                  <span class="term-math">Σ<sub>l</sub> (s<sub>l</sub> P<sub>l</sub>) q<sub>l,d</sub></span>
+                </div>
+                <span class="term-plus">+</span>
+                <div class="fold-term term-offset">
+                  <small><span data-i18n="en">Offset correction</span><span data-i18n="zh">偏移修正</span></small>
+                  <span class="term-math">Σ<sub>l</sub> z<sub>l</sub> P<sub>l</sub></span>
+                </div>
               </div>
-              <div class="fold-case" data-case="pv-channel" hidden>
-                <p class="fold-eq"><mark>s<sub>d</sub></mark> · Σ<sub>l</sub> P<sub>l</sub> q<sub>l,d</sub> + <u>z<sub>d</sub> · Σ<sub>l</sub> P<sub>l</sub></u></p>
-                <p><span data-i18n="en">Channel-wise V, accumulator fold: each channel shares s and z along L, the axis PV reduces over. The scale multiplies each group-local PV partial result before it joins the output.</span><span data-i18n="zh">按通道分组的 V，累加器折叠：每个通道沿 L 共享 s 与 z，而 PV 正是沿 L 求和。缩放先乘到每个组内 PV 部分和上，再并入输出。</span></p>
+              <div class="fold-terms" data-case="pv-channel" hidden>
+                <div class="fold-term term-scale">
+                  <small><span data-i18n="en">Scaled product</span><span data-i18n="zh">缩放后的乘积</span></small>
+                  <span class="term-math">s<sub>d</sub> · Σ<sub>l</sub> P<sub>l</sub> q<sub>l,d</sub></span>
+                </div>
+                <span class="term-plus">+</span>
+                <div class="fold-term term-offset">
+                  <small><span data-i18n="en">Offset correction</span><span data-i18n="zh">偏移修正</span></small>
+                  <span class="term-math">z<sub>d</sub> · Σ<sub>l</sub> P<sub>l</sub></span>
+                </div>
               </div>
             </div>
           </div>
-          <figcaption><span data-i18n="en">Interactive adaptation of Figure 4. Gold marks the shared group and the scale term. The dashed underline marks the offset correction.</span><span data-i18n="zh">论文图 4 的交互式改编。金色标出共享分组与缩放项，虚线下划线标出偏移修正。</span></figcaption>
+          <figcaption><span data-i18n="en">Interactive adaptation of Figure 4.</span><span data-i18n="zh">根据论文图 4 改编。</span></figcaption>
         </figure>
         <details class="paper-detail">
           <summary><span data-i18n="en">Try the arithmetic on four keys</span><span data-i18n="zh">用四个键看折叠怎么算</span></summary>
