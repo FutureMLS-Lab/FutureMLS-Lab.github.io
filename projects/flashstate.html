@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FlashState — FutureMLS — Nonprofit Research Lab</title>
-  <meta name="description" content="FlashState: flexible hybrid-state management for agentic LLM serving. Paper, project, and code from FutureMLS — Nonprofit Research Lab." />
+  <title>FlashStates — FutureMLS — Nonprofit Research Lab</title>
+  <meta name="description" content="FlashStates: flexible hybrid-state management for agentic LLM serving. Paper, project, and code from FutureMLS — Nonprofit Research Lab." />
   <link rel="icon" type="image/png" href="../assets/img/futuremls-icon-20261011.png" />
 
   <!-- Choose the starting language before first paint. A saved choice always wins;
@@ -61,7 +61,7 @@
     <a class="proj__back" href="../index.html#projects"><span data-i18n="en">← All projects</span><span data-i18n="zh">← 返回项目列表</span></a>
 
     <span class="eyebrow">ML ENGINES · alphaXiv 2026 · Under Review</span>
-    <h1 class="proj__title">FlashState: Unlocking Flexible Hybrid State Management for Agentic LLM Serving</h1>
+    <h1 class="proj__title">FlashStates: Unlocking Flexible Hybrid State Management for Agentic LLM Inference</h1>
     <div class="proj__meta">
       <span class="proj__badge" data-i18n="en">Lab project</span>
       <span class="proj__badge" data-i18n="zh">实验室项目</span>
@@ -71,12 +71,12 @@
     </div>
 
     <figure class="proj__figure">
-      <img src="../assets/img/projects/flashstate-overview.png" alt="FlashState aligns checkpoints with agent-turn boundaries and compares serving performance on GLM-5.3-Flash at 48 concurrent sessions." />
+      <img src="../assets/img/projects/flashstate-overview.png" alt="FlashStates aligns checkpoints with agent-turn boundaries and compares serving performance on GLM-5.3-Flash at 48 concurrent sessions." />
     </figure>
 
     <span class="eyebrow" data-i18n="en">Overview</span>
     <span class="eyebrow" data-i18n="zh">项目介绍</span>
-    <p class="proj__lead">Hybrid LLMs need matching attention KV tensors and recurrent checkpoints to reuse a prefix. FlashState aligns checkpoint placement with agent-turn boundaries and manages these dependencies together, reducing repeated prefill as conversations grow.</p>
+    <p class="proj__lead">Hybrid LLMs need matching attention KV tensors and recurrent checkpoints to reuse a prefix. FlashStates aligns checkpoint placement with agent-turn boundaries and manages these dependencies together, reducing repeated prefill as conversations grow.</p>
 
     <span class="eyebrow" data-i18n="en">Approach</span>
     <span class="eyebrow" data-i18n="zh">方法</span>
@@ -84,7 +84,7 @@
 
     <span class="eyebrow" data-i18n="en">Results</span>
     <span class="eyebrow" data-i18n="zh">实验结果</span>
-    <p class="proj__lead">On coding-agent workloads with GLM-5.3-Flash, 1M-token context and 48 concurrent sessions, using two NVIDIA B200 GPUs per engine, FlashState reaches <strong>3.14× vLLM’s prefill throughput</strong>.</p>
+    <p class="proj__lead">On coding-agent workloads with GLM-5.3-Flash, 1M-token context and 48 concurrent sessions, using two NVIDIA B200 GPUs per engine, FlashStates reaches <strong>3.14× vLLM’s prefill throughput</strong>.</p>
 
     <span class="eyebrow" data-i18n="en">Authors</span>
     <span class="eyebrow" data-i18n="zh">作者</span>
